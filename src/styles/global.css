@@ -1,0 +1,42 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 300;
+}
+
+html {
+  background-color: rgb(217, 203, 174);
+}
+
+body {
+  width: 100vw;
+  /* overflow-x: hidden; */
+  transition: background 1s ease-in;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (max-width: 650px) {
+  .ant-picker-cell {
+    display: block;
+  }
+}
+
+.react-tel-input {
+  max-width: calc(100% - 1.5vw);
+}
+
+.ant-picker-calendar-full {
+  overflow-y: hidden;
+}
+.ant-picker-calendar-date-content {
+  overflow-y: hidden;
+}

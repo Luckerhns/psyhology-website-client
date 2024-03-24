@@ -1,0 +1,32 @@
+@import "./variables";
+
+.record__title {
+  width: $containerWidth;
+  height: 550px;
+  background-color: $sectionColor;
+
+  .record__title__text {
+    @media screen and (max-width: 650px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+thead {
+  display: none;
+}
+
+.record__cell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cell {
+    font-size: 12px;
+  }
+}

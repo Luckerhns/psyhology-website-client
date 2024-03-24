@@ -1,0 +1,56 @@
+@import "../_variables.scss";
+@import "../_fonts.scss";
+
+.question {
+    width: 500px;
+    max-height: 20px;
+    overflow: hidden;
+    padding: 0px 20px;
+    padding-bottom: calc(50px + $mainFontSize);
+    padding-top: 50px;
+    margin: 0px 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 2s ease;
+    border-bottom: 1px solid black;
+    @media screen and (max-width: 1000px) {
+      width: 70vw;
+      text-align: center;
+    }
+
+    
+    .question__head__title {
+      width: 100%;
+      font-size: $mainFontSize;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 50px;
+      @media screen and (max-width: 1000px) {
+        width: 100%;
+        text-align: center;
+      }
+      
+      span {
+        height: 100%;
+        @media screen and (max-width: 1000px) {
+          font-size: $adaptiveFontSize-2;
+        }
+        
+        img {
+          width: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: transform .8s ease-in-out;
+        }
+        // justify-content: center;
+        // align-items: center;
+      }
+    }
+
+    .question__body__text {
+      margin-top: 50px;
+      text-align: left;
+    }
+  }

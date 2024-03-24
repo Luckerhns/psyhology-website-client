@@ -1,0 +1,297 @@
+@import "./_variables.scss";
+@import "./_fonts.scss";
+
+.title__section {
+  width: $containerWidth;
+  height: 800px;
+  background-color: $sectionColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 20px 20px 0;
+  padding: 0 100px;
+
+  @media screen and (max-width: 1200px) {
+    padding: 0 50px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    padding: 0px;
+    height: 600px;
+    border-radius: 10px;
+  }
+  @media screen and (max-width: 800px) {
+    height: 470px;
+  }
+  @media screen and (max-width: 650px) {
+    height: 350px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 200px;
+  }
+
+  .left__container {
+    width: 47.5%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media screen and (max-width: 1000px) {
+      width: 47.5%;
+
+      height: 580px;
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 47.5%;
+      height: 450px;
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 650px) {
+      width: 47.5%;
+      height: 300px;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 400px) {
+      height: 175px;
+    }
+
+    .left__container__title {
+      font-size: $logoFontSize;
+      font-family: $logoFont;
+
+      @media screen and (max-width: 1000px) {
+        // display: none;
+      }
+    }
+
+    .left__container__text {
+      width: 50%;
+      font-size: $mainFontSize;
+      
+      @media screen and (max-width: 1000px) {
+        width: 85%;
+        text-align: center;
+        padding: 30px 0;
+        font-size: $adaptiveFontSize-1;
+      }
+    }
+
+    .record__btn {
+      width: 22vw;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #c5c4c4;
+      border-radius: 5px;
+      text-decoration: none;
+      color: black;
+
+      @media screen and (max-width: 1000px) {
+        width: 80%;
+        height: 40px;
+        font-size: 2.5vw;
+      }
+    }
+  }
+
+  .right__section {
+    width: 47.5%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 0;
+
+    @media screen and (max-width: 1000px) {
+      width: 47.5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 0;
+    }
+    @media screen and (max-width: 650px) {
+      height: 300px;
+      padding: 0;
+    }  
+
+    @media screen and (max-width: 400px) {
+      height: 175px;
+    }
+
+    img {
+      height: 85%;
+      border-radius: 10px;
+      box-shadow: 10px 10px 2px 0px rgb(156, 156, 156);
+
+      @media screen and (max-width: 1000px) {
+        width: 90%;
+        height: auto;
+      }  
+      @media screen and (max-width: 650px) {
+        height: 100%;
+      }  
+    }
+  }
+}
+
+// ANOTHER SECTION
+
+.about__section {
+  width: $containerWidth;
+  height: 550px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column-reverse;
+    min-height: 550px;
+  }
+
+  .background__ball {
+    width: 100vw;
+    height: 100vw;
+    z-index: -10;
+    position: absolute;
+    top: -5vh;
+    right: 40vw;
+    background-color: rgba(157, 175, 184, 1);
+    border-radius: 50%;
+
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .left__container {
+    width: 47.5%;
+
+    img {
+      height: 100%;
+      margin-left: 3vw;
+      @media screen and (max-width: 1000px) {
+        display: none;
+        // margin-left: 0;
+        // width: 50%;
+        // height: 100%;
+      }
+    } 
+  }
+
+  .right__container {
+    width: 47.5%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .text {
+      height: 40%;
+      width: 65%;
+      margin-right: 5%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 1vw;
+      padding: 5px 0;
+
+      @media screen and (max-width: 1000px) {
+        height: 100%;
+        font-size: 2.5vw;
+        padding-bottom: 0vw;
+      }
+
+      @media screen and (max-width: 650px) {
+        width: 80%;
+        padding: 0;
+        margin-right: 0;
+        height: 100%;
+        font-size: calc($adaptiveFontSize-2 + .5vw);
+      }
+    }
+  }
+}
+
+// QUESTION SECTION
+
+.questions__section {
+  padding: 80px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  overflow: scroll;
+  background-color: $sectionColor;
+  min-height: 350px;
+  border-radius: 10px;
+
+  .section__title {
+    font-size: $logoFontSize;
+    margin-bottom: 50px;
+  }
+
+  .questions__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid black;
+    margin-top: 50px;
+  }
+}
+
+.rewards__section {
+  width: $containerWidth;
+  height: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @media screen and (max-width: 1000px) {
+    height: 50vw;
+  }
+  @media screen and (max-width: 650px) {
+    height: 60vw;
+  }
+
+  h5 {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $bigFontSize;
+    margin: 20px 0;
+  }
+
+  .rewards__container {
+    width: 100%;
+  }
+}
+
+// DEPENDENCY STYLES

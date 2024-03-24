@@ -1,0 +1,38 @@
+@import "../fonts";
+
+.burger__container {
+  width: 40vw;
+  height: 100vh;
+  background-color: rgb(181, 145, 92);
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(40vw);
+  transition: all 0.7s ease;
+}
+
+.burger__container.active {
+  @media screen and (max-width: 1000px) {
+    transform: translateX(0vw);
+    transition: all 0.7s ease;
+  }
+}
+
+.burger__container__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5vw;
+
+  .burger__container__body {
+    margin-top: 10vw;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: $adaptiveFontSize-2;
+    text-align: center;
+  }
+}

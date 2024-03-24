@@ -1,0 +1,27 @@
+.slider__image__container {
+  // margin: 0 50px;
+  background-color: rgb(190, 190, 190);
+  border-radius: 5px;
+
+  @media screen and (max-width: 1000px) {
+    margin: 0;
+  }
+
+  .padding {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  img {
+    width: 80%;
+    margin: auto;
+    height: 100%;
+    border-radius: 10px;
+    background-color: gray;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,235 @@
+@import "./variables";
+@import "./fonts";
+
+.title__container {
+  width: 100%;
+  min-height: 700px;
+  background: $sectionColor;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+
+  @media screen and (max-width: 1250px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  
+
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 25px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 650px) {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 25px;
+  }
+
+  @media screen and (max-width: 400px) {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .left__heading {
+    width: 40%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20px;
+    padding: 50px 0;
+
+    @media screen and (max-width: 1250px) {
+      height: auto;
+      width: 85%;
+      min-height: 550px;
+      justify-content: space-evenly;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 85%;
+      min-height: 550px;
+      justify-content: space-evenly;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 85%;
+      min-height: 800px;
+      justify-content: space-evenly;
+    }
+
+    .record__btn {
+      width: 22vw;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #c5c4c4;
+      border-radius: 5px;
+      text-decoration: none;
+      color: black;
+
+      @media screen and (max-width: 1000px) {
+        width: 40vw;
+        height: 60px;
+        margin-top : 25px;
+        padding: 15px;
+        font-size: 1.5vw;
+      }
+      @media screen and (max-width: 650px) {
+        width: 40vw;
+        height: 30px;
+        padding: 15px;
+        font-size: 1.5vw;
+      }
+    }
+    
+    
+    .title__heading {
+      width: 100%;
+      height: auto;
+      font-size: $logoFontSize;
+      font-weight: 900;
+      font-family: "Playfair Display", serif;
+
+      @media screen and (max-width: 1250px) {
+        width: 90%;
+        padding-bottom: 10px;
+        font-size: 25px;
+      }
+      
+      @media screen and (max-width: 1000px) {
+        width: 90%;
+        padding-bottom: 10px;
+        font-size: 25px;
+      }
+
+      @media screen and (max-width: 1000px) {
+        padding: 30px 0;
+      }
+    }
+    
+    .title__content {
+      width: 100%;
+      font-size: $mainFontSize;
+      font-weight: 400;
+      font-family: "Playfair Display", serif;
+    }
+  }
+  
+  .right__heading {
+    width: 50%;
+    height: 550px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // margin: 0 20px;
+    padding: 50px 0;
+    position: relative;
+
+    @media screen and (max-width: 1250px) {
+      width: 100%;
+      justify-content: center;
+      height: auto;
+      padding: 30px 0;
+    }
+ 
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      justify-content: center;
+      height: auto;
+    }
+
+    img {
+      width: 85%;
+
+      border-radius: 10px;
+      z-index: 15;
+      box-shadow: 10px 10px 10px 2px rgb(66, 66, 66);
+
+    }
+  }
+}
+
+// SECOND CONTAINER ON PAGE
+
+.therapyPage__description {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  padding: 20px;
+
+  
+  .therapyPage__content {
+    margin: 75px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .therapyPage__content__heading {
+      text-align: center;
+      margin: 50px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h3 {
+        position: absolute;
+        z-index: 100;
+        background-color: gray;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+      }
+
+      .line {
+        width: 100%;
+        height: 3px;
+        // background-color: rgb(135, 135, 135);
+        background-color: gray;
+        border-radius: 50px;
+      }
+    }
+
+    .therapyPage__content__body {
+      width: 100%;
+      line-height: 30px;
+
+      .text {
+        margin: 25px 0;
+      }
+
+      .list_heading {
+        margin-top: 25px;
+        text-decoration: solid;
+      }
+
+      .list {
+        margin: 25px 0;
+        margin-left: 15px;
+      }
+    }
+  }
+}

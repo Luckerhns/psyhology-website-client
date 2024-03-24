@@ -1,0 +1,63 @@
+.admin__records__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .records__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+
+    .record {
+      width: 350px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 10px 10px;
+      padding: calc(100% / 30);
+      border: 1px solid rgb(142, 142, 142);
+      border-radius: 20px;
+      background-color: rgb(162, 162, 162);
+      opacity: 0.7;
+    }
+  }
+
+  .btn__exit {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgb(2, 147, 2);
+    transition: 0.4s ease-in-out;
+    margin-top: 10px;
+
+    &:hover {
+      transform: scale(1.2);
+      background-color: green;
+    }
+  }
+}
+
+.record__active {
+  background-color: rgba(2, 183, 62, 0.2);
+  width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px;
+  padding: calc(100% / 30);
+  border: 1px solid rgb(142, 142, 142);
+  border-radius: 20px;
+
+  .record__date {
+    color: green;
+  }
+}

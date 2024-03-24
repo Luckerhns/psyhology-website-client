@@ -1,0 +1,64 @@
+@import "fonts";
+@import "variables";
+
+.footer {
+  background: #414141;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
+}
+
+.footerContent {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  align-self: flex-end;
+  // margin-bottom: 30px;
+  min-height: 80%;
+  
+    @media screen and (max-width: 1000px) {
+      font-size: 1.5vw;
+    }
+    
+    
+    @media screen and (max-width: 650px) {
+      font-size: 2vw;
+      display: flex; 
+    }
+
+  .footer__notice {
+    width: 80%;
+    text-align: center;
+    color: #cbcbcb;
+  }
+
+  div {
+    padding: 7.5px 0;
+  }
+}
+
+.footerLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.footerLinks a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.copyright {
+  color: #cbcbcb;
+}

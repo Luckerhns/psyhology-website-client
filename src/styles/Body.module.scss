@@ -1,0 +1,13 @@
+@import './_variables';
+
+.body__container {
+    width: $containerWidth;
+    min-height: $bodyHeight;
+    position: relative;
+    background-repeat: repeat;
+    margin: 50px auto;
+
+    @media screen and (max-width: 1000px) {
+      margin-top: 0;
+    }
+}
