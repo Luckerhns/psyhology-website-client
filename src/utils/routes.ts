@@ -11,7 +11,7 @@ import { IRoute } from "../types/routes";
 import { PrivateRoutesEnum, PublicRoutesEnum } from "./consts";
 
 export const publicRoutes: IRoute[] = [
-  { path: PublicRoutesEnum.MainPath, element: MainPage, },
+  { path: PublicRoutesEnum.MainPath, element: MainPage },
   { path: PublicRoutesEnum.TherapyPath, element: TherapyPage },
   { path: PublicRoutesEnum.AboutMePath, element: AboutmePage },
   // { path: PublicRoutesEnum.RecordPath, element: RecordPage },
@@ -20,7 +20,7 @@ export const publicRoutes: IRoute[] = [
   // { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
 ];
 
-export const privateRoutes = [
+export const privateRoutes: IRoute[] = [
   { path: PublicRoutesEnum.MainPath, element: MainPage },
   { path: PublicRoutesEnum.TherapyPath, element: TherapyPage },
   { path: PublicRoutesEnum.AboutMePath, element: AboutmePage },
