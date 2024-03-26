@@ -2,7 +2,6 @@ import showpassword from "../icons/show.png";
 import hidePassword from "../icons/hide.png";
 import React, { ChangeEvent, FC, useState } from "react";
 import styles from "../styles/UI/AuthModal.module.scss";
-import PhoneInputWithCountrySelect from "react-phone-number-input";
 import "react-phone-input-2/lib/style.css";
 import "../styles/Phone.scss";
 import { useTypedSelector } from "../hooks/useTypedSelector";
