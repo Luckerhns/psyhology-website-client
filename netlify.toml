@@ -6,6 +6,6 @@ publish = "dist"
   HUGO_VERSION = "0.88.1"
 
 [build.redirects]
-  /*    /index.html   200!
-  /about   /about.html  200
-  /contact /contact.html  200
+  "/" = "/index.html 200!"
+  "/about" = "/about.html 200"
+  "/contact" = "/contact.html 200"
