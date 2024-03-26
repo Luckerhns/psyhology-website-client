@@ -8,7 +8,7 @@ import { PublicRoutesEnum } from "./utils/consts";
 function App() {
   const isAdmin = Boolean(localStorage.getItem("isAdmin"));
   // localStorage.clear()
-  console.log(isAdmin)
+  console.log(isAdmin);
   return (
     <BrowserRouter>
       <Routes>

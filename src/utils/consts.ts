@@ -4,16 +4,16 @@ export enum catalogPaths {}
 
 export enum PublicRoutesEnum {
   MainPath = "/",
-  CatalogPath = "/catalog",
-  AdminPath = "/admin",
-  BasketPath = "/basket",
-  FavoritesPath = "/favorites",
-  TherapyPath = "/therapy",
-  AboutMePath = "/aboutme",
-  AuthPath = "/auth-path",
-  RecordPath = "/therapy/record",
-  AgreePath = "/agree",
-  PoliticyPath = "/politicy",
+  CatalogPath = "/catalog.html",
+  AdminPath = "/admin.html",
+  BasketPath = "/basket.html",
+  FavoritesPath = "/favorites.html",
+  TherapyPath = "/therapy.html",
+  AboutMePath = "/aboutme.html",
+  AuthPath = "/auth-path.html",
+  RecordPath = "/therapy/record.html",
+  AgreePath = "/agree.html",
+  PoliticyPath = "/politicy.html",
 }
 
 export const PublicNavbarRoutesArray: INavbarRoutesArray = [
