@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/ru/MainPage";
 import { privateRoutes, publicRoutes } from "./utils/routes";
+import { PublicRoutesEnum } from "./utils/consts";
 
 function App() {
   const isAdmin = Boolean(localStorage.getItem("isAdmin"));
