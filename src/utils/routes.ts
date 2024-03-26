@@ -14,18 +14,18 @@ export const publicRoutes: IRoute[] = [
   { path: PublicRoutesEnum.MainPath, element: MainPage },
   { path: PublicRoutesEnum.TherapyPath, element: TherapyPage },
   { path: PublicRoutesEnum.AboutMePath, element: AboutmePage },
-  // { path: PublicRoutesEnum.RecordPath, element: RecordPage },
-  // { path: PublicRoutesEnum.AuthPath, element: AuthPage },
-  // { path: PublicRoutesEnum.AgreePath, element: AgreePage },
-  // { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
+  { path: PublicRoutesEnum.RecordPath, element: RecordPage },
+  { path: PublicRoutesEnum.AuthPath, element: AuthPage },
+  { path: PublicRoutesEnum.AgreePath, element: AgreePage },
+  { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
 ];
 
 export const privateRoutes: IRoute[] = [
   { path: PublicRoutesEnum.MainPath, element: MainPage },
   { path: PublicRoutesEnum.TherapyPath, element: TherapyPage },
   { path: PublicRoutesEnum.AboutMePath, element: AboutmePage },
-  // { path: PrivateRoutesEnum.CurrentRecord, element: AdminRecords },
-  // { path: PublicRoutesEnum.AdminPath, element: AdminPage },
-  // { path: PublicRoutesEnum.AgreePath, element: AgreePage },
-  // { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
+  { path: PrivateRoutesEnum.CurrentRecord, element: AdminRecords },
+  { path: PublicRoutesEnum.AdminPath, element: AdminPage },
+  { path: PublicRoutesEnum.AgreePath, element: AgreePage },
+  { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
 ];
