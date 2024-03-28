@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders, InternalAxiosRequestConfig } from "axios";
+import axios, { InternalAxiosRequestConfig } from "axios";
 
 const $user = axios.create({
     // withCredentials: true,

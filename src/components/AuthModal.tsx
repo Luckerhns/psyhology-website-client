@@ -1,15 +1,12 @@
 import showpassword from "../icons/show.png";
 import hidePassword from "../icons/hide.png";
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { FC, useState } from "react";
 import styles from "../styles/UI/AuthModal.module.scss";
 import "react-phone-input-2/lib/style.css";
 import "../styles/Phone.scss";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { $user } from "../http";
-import PhoneInput from "./UI/PhoneInput";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PublicRoutesEnum } from "../utils/consts";
 
 const AuthModal: FC = () => {

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/components/CustomCalendar.module.scss";
-import { Badge, Calendar, Col, Radio, Row, Select, Typography } from "antd";
-import type { BadgeProps, CalendarProps } from "antd";
+import { Calendar } from "antd";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import locale from "antd/es/date-picker/locale/ru_RU";
-import { event, monthsRu, monthsRuList, weekDaysRu } from "../utils/data";
+import { event, monthsRu, weekDaysRu } from "../utils/data";
 import { useActions } from "../hooks/useActions";
 import CalendarHeaderComponent from "./Calendar/CalendarHeader";
-import { Moment } from "moment";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { notSelectedTimes } from "./Calendar/CalendarModal";
 import FreeTimesCell from "./UI/Cells/FreeTimesCell";

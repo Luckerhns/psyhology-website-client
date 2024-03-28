@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Footer.module.scss";
-import { payIcons } from "../utils/data";
 import { Link } from "react-router-dom";
+import { PublicRoutesEnum } from "../utils/consts";
 
 const Footer = () => {
   return (
@@ -34,8 +34,8 @@ const Footer = () => {
           защищены.
         </div>
         <div className={styles.footerLinks}>
-          <Link to="#">Пользовательское соглашение</Link>
-          <Link to="#">Политика конфиденциальности</Link>
+          <Link to={PublicRoutesEnum.AgreePath}>Пользовательское соглашение</Link>
+          <Link to={PublicRoutesEnum.PoliticyPath}>Политика конфиденциальности</Link>
         </div>
       </div>
     </footer>

@@ -1,9 +1,3 @@
-import burger from "../icons/burger.png";
-import favorites from "../icons/favorites.png";
-import loop from "../icons/loop.png";
-import order from "../icons/order.png";
-import login from "../icons/login.png";
-
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Navbar.module.scss";
 import { useActions } from "../hooks/useActions";
@@ -77,9 +71,25 @@ const Navbar = () => {
         <div className={styles.main__header}>
           <div className={styles.header__container}>
             {!isAdmin
-              ? PublicNavbarRoutesArray.map((route, i) => <a key={i} onClick={() => openPage(route.path, route.toProfile, route.therapyType)}>{route.pathName}</a>)
+              ? PublicNavbarRoutesArray.map((route, i) => (
+                  <a
+                    key={i}
+                    onClick={() =>
+                      openPage(route.path, route.toProfile, route.therapyType)
+                    }
+                  >
+                    {route.pathName}
+                  </a>
+                ))
               : PrivateNavbarRoutesArray.map((route, i) => (
-                  <a key={i} onClick={() => openPage(route.path, route.toProfile, route.therapyType)}>{route.pathName}</a>
+                  <a
+                    key={i}
+                    onClick={() =>
+                      openPage(route.path, route.toProfile, route.therapyType)
+                    }
+                  >
+                    {route.pathName}
+                  </a>
                 ))}
           </div>
         </div>

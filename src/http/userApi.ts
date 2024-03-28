@@ -2,7 +2,6 @@ import { $user } from ".";
 import jwt_decode from "jwt-decode";
 import getErrorByStatus from "../utils/functions";
 import { IUser } from "../types/types";
-import { Axios } from "axios";
 
 export const registration = async (dto: {
   email: string;

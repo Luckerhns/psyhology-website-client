@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/ru/MainPage";
 import { privateRoutes, publicRoutes } from "./utils/routes";
