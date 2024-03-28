@@ -20,7 +20,6 @@ const FreeTimesCell: FC<IFreeTimesCell> = ({ selectedRecordField, events }) => {
 
   const openUserModal = () => {
     const currentDateAllTimes = findCurrentDate(events, selectedUserDate);
-    console.log(currentDateAllTimes);
     OpenUserModalTimes(currentDateAllTimes, selectedUserDate, events);
     setSelectedTime("Выберите время");
   };

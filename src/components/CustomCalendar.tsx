@@ -58,10 +58,8 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
       for (let i = 0; i < events?.length; i++) {
         if (events[i].date !== selectedDate) {
           setIsDateExists(false);
-          console.log(selectedDate, isDateExists);
         } else {
           setIsDateExists(true);
-          console.log(selectedDate, isDateExists);
           break;
         }
       }

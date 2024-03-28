@@ -13,7 +13,6 @@ export const registration = async (dto: {
     password: dto.password,
     username: dto.username,
   });
-  // console.log(data);
   return data;
 };
 

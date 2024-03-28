@@ -20,7 +20,6 @@ const AdminRecords = () => {
     getBusyRecords().then((res) => setRecord(res));
   }, []);
 
-  console.log(currentDate);
   return (
     <MainLayout>
       <div className={styles.admin__records__container}>
@@ -38,7 +37,6 @@ const AdminRecords = () => {
 
             const isActive = getDateIsActive(currentDate, currentRecord);
 
-            console.log(isActive);
 
             return (
               <div data-active={isActive}

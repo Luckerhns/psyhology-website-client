@@ -42,7 +42,6 @@ export const AuthActionCreators = {
             });
             dispatch(AuthActionCreators.setIsAuth(true));
             localStorage.setItem('isAuth', "true")
-            console.log(data);
           } catch (error: any) {
             const statusCode = error.response.status;
             const errorType = getErrorByStatus(statusCode);

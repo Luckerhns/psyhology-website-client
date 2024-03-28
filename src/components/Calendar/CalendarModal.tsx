@@ -102,7 +102,6 @@ const CalendarModal = () => {
     allTimes[0] &&
       //@ts-ignore
       allTimes[0].map((el, i) => {
-        console.log(selectedTime, selectedUserDate, "ALLTIMES RECORD MODAL");
         items.push({
           key: i,
           label: (
@@ -235,7 +234,6 @@ const CalendarModal = () => {
             <div className={styles.not__selected__times}>
               <h5>Не выбранное время</h5>
               {events.map((e) => {
-                // console.log(e.date === selectedStateDate)
                 if (e.date === selectedStateDate) {
                   return e.notSelectedTimes.map((time) => (
                     <div

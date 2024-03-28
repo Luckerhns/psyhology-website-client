@@ -145,7 +145,6 @@ export const RecordActionCreators = {
             ];
             const { data } = await userNewRecord(dto);
 
-            console.log(data);
             return data;
           } catch (error) {
             console.log(error);

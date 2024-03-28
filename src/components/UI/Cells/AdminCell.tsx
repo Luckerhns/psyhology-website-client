@@ -22,9 +22,6 @@ const AdminCell: FC<IAdminCell> = ({
   return (
     <div
       className={styles.admin__cell}
-      onClick={() => {
-        console.log(selectedCellDate);
-      }}
     >
       <div className={styles.cell__content}>
         <span>На этот день занятых записей {eventDate?.busyTimes?.length}</span>
