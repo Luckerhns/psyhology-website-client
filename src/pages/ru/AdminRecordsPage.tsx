@@ -25,7 +25,7 @@ const AdminRecords = () => {
     <MainLayout>
       <div className={styles.admin__records__container}>
         <div className={styles.records__container}>
-          {record.map((e) => {
+          {record && record.map((e) => {
             const startMonth = e.date.indexOf("-");
             const startDay = e.date.lastIndexOf("-");
             const recordDay = parseInt(
