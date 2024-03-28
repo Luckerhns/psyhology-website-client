@@ -13,7 +13,7 @@ export const newRecord = async (calendar: CalendarData) => {
 export const getCalendar = async () => {
   try {
     const { data } = await $user.post("api/admin/calendar/get-calendar");
-    const calendar = Object.values(JSON.parse(data.record));
+    const calendar = data ? Object.values(JSON.parse(data.record)) : data;
 
     console.log("SUCCESS", data, calendar);
     return calendar;

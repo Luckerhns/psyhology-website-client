@@ -9,7 +9,7 @@ export const event = [
     date: "2023-01-10",
     username: "dsadsa",
     freeTimes: [],
-    busyTimes: [],
+    busyTimes: [{time: "19:00", date: "2023-01-10"}],
     notSelectedTimes: [
       "10:00",
       "11:00",
@@ -20,7 +20,6 @@ export const event = [
       "16:00",
       "17:00",
       "18:00",
-      "19:00",
     ],
   },
 ];

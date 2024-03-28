@@ -54,19 +54,6 @@ const AuthModal: FC = () => {
     else setEmailError("");
   }
 
-  function checkPassword(e: any) {
-    if (e < 3 || e > 12) {
-      setPasswordError(
-        "Пароль должен быть не меньше 3 и не больше 12 символов"
-      );
-      if (!e) {
-        setPasswordError("Пароль не может быть пустым");
-      }
-    } else {
-      setPasswordError("");
-    }
-  }
-
   const activeButton = passwordError || emailError !== "" ? true : false;
 
   return (
@@ -119,7 +106,6 @@ const AuthModal: FC = () => {
           <div className={styles.input__container}>
             <span>Password</span>
             <input
-              onBlur={() => checkPassword(password.length)}
               type={isPassword ? "password" : "text"}
               placeholder="Password"
               value={password}

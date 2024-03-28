@@ -26,7 +26,8 @@ export interface IAdminCell {
   eventDate: ICalendarData;
   openRecordModal: any;
   events?: any;
-  selectedCellDate?: string
+  selectedCellDate?: string;
+  isDateExists?: boolean
 }
 
 export interface IFreeTimesCell {

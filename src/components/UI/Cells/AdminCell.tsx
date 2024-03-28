@@ -15,6 +15,7 @@ const AdminCell: FC<IAdminCell> = ({
   openRecordModal,
   events,
   selectedCellDate,
+  isDateExists,
 }) => {
   const { selectedUserDate } = useTypedSelector((state) => state.recordModal);
   const currentDate: any[] = findCurrentDate(events, selectedUserDate);
@@ -22,7 +23,6 @@ const AdminCell: FC<IAdminCell> = ({
     <div
       className={styles.admin__cell}
       onClick={() => {
-        openRecordModal(true, selectedCellDate, true);
         console.log(selectedCellDate);
       }}
     >
@@ -35,7 +35,7 @@ const AdminCell: FC<IAdminCell> = ({
             onClick={
               selectedRecordField
                 ? () => {
-                    openRecordModal(false, selectedCellDate, false);
+                    openRecordModal(false, selectedCellDate, true);
                   }
                 : () => console.log(eventDate)
             }

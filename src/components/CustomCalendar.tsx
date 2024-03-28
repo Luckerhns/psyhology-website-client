@@ -58,8 +58,10 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
       for (let i = 0; i < events?.length; i++) {
         if (events[i].date !== selectedDate) {
           setIsDateExists(false);
+          console.log(selectedDate, isDateExists);
         } else {
           setIsDateExists(true);
+          console.log(selectedDate, isDateExists);
           break;
         }
       }
@@ -83,7 +85,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
     const allTimes = findCurrentDate(events, selectedDate);
     openRecordModalTimes(allTimes, selectedDate, events);
     setTimeout(() => closeRecordModal(), 200);
-    console.log("GGGG")
+    console.log("GGGG");
   }, []);
 
   // localStorage.clear()
@@ -112,7 +114,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
         },
       ]);
     }
-    console.log('GGGG');
+    console.log("GGGG");
     setIsDateExists(true);
   };
 
@@ -196,6 +198,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
                       selectedRecordField={selectedRecordField}
                       events={events}
                       key={key}
+                      isDateExists={isDateExists}
                     />
                   );
                 } else {
