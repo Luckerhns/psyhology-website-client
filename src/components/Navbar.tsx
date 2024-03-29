@@ -59,12 +59,12 @@ const Navbar = () => {
             <span className={styles.header__logo__text}>
               Магистр психологии, психотерапевт, семейный психолог
             </span>
-            <Link
+            <a
               className={styles.header__logo}
-              to={PublicRoutesEnum.MainPath}
+              onClick={() => openPage(PublicRoutesEnum.MainPath)}
             >
               Татьяна Ерёмина
-            </Link>
+            </a>
             <Burger isBurger={true} />
           </div>
         </div>

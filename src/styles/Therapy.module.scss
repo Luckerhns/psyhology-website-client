@@ -75,7 +75,7 @@
 
     @media screen and (max-width: 800px) {
       width: 85%;
-      min-height: 800px;
+      min-height: 300px;
       justify-content: space-evenly;
     }
 
@@ -89,19 +89,26 @@
       border-radius: 5px;
       text-decoration: none;
       color: black;
+      transition: .3s ease-in-out;
 
       @media screen and (max-width: 1000px) {
         width: 40vw;
         height: 60px;
         margin-top : 25px;
         padding: 15px;
-        font-size: 1.5vw;
+        font-size: 2.5vw;
       }
       @media screen and (max-width: 650px) {
         width: 40vw;
         height: 30px;
         padding: 15px;
-        font-size: 1.5vw;
+        font-size: 2.5vw;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1) translateX(10px);
+        background-color: rgb(202, 202, 202);
       }
     }
     
@@ -202,6 +209,10 @@
         padding: 10px;
         border-radius: 5px;
         color: white;
+
+        @media screen and (max-width:650px) {
+          font-size: 3vw;
+        }
       }
 
       .line {

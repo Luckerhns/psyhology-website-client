@@ -57,18 +57,35 @@
       }
 
       .header__logo__text {
+        font-size: 1.5vw;
         @media screen and (max-width: 1000px) {
           display: none;
         }
       }
 
       .header__logo {
+
         font-family: $logoFont;
         margin-right: 2.5px;
-        font-size: $logoFontSize;
+        letter-spacing: 4px;
+        font-size: 2.5vw;
+        transition: .3s ease-in;
 
+        &:hover {
+          color: red;
+        }
+        
+        @media screen and (max-width: 1200px) {
+          font-size: 2.5vw;
+        }
         @media screen and (max-width: 1000px) {
-          font-size: $logoAdaptiveFontSize-1;
+          font-size: 40px;
+          position: absolute;
+          left: 20px;
+        }
+        @media screen and (max-width: 650px) {
+          font-size: 7vw;
+          letter-spacing: 2px;
         }
       }
     }

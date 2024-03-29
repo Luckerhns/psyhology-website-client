@@ -9,13 +9,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px 20px 20px 0;
-  padding: 0 100px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-
-  @media screen and (max-width: 1200px) {
-    padding: 0 50px;
-  }
+  padding: 0 100px;
 
   @media screen and (max-width: 1000px) {
     // display: flex;
@@ -32,7 +28,7 @@
     flex-direction: column;
     justify-content: space-around;
     font-size: 3vw;
-    align-items: center;
+    align-items: flex-start;
 
     h5 {
       text-align: center;
@@ -69,7 +65,14 @@
       border-radius: 5px;
       text-decoration: none;
       color: black;
+      transition: 0.3s ease-in-out;
       font-size: 1vw;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1) translateX(10px);
+        background-color: rgb(202, 202, 202);
+      }
 
       @media screen and (max-width: 1000px) {
         width: 80%;
@@ -128,6 +131,20 @@
   display: flex;
   justify-content: space-between;
 
+  &:hover {
+    .background__ball {
+      transform: scale(3);
+    }
+
+    .text {
+      transform: scale(1.05) translateX(-40px);
+    }
+
+    img {
+      transform: scale(1.05) translateX(40px);
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     width: 100vw;
     display: flex;
@@ -147,6 +164,7 @@
     right: 40vw;
     background-color: rgba(157, 175, 184, 1);
     border-radius: 50%;
+    transition: 0.3s ease-in-out;
 
     @media screen and (max-width: 1000px) {
       display: none;
@@ -159,6 +177,7 @@
     img {
       height: 100%;
       margin-left: 3vw;
+      transition: .3s ease-in-out;
       @media screen and (max-width: 1000px) {
         display: none;
         // margin-left: 0;
@@ -197,6 +216,7 @@
       font-size: 1vw;
       line-height: 2vw;
       padding: 5px 0;
+      transition: all 0.3s ease-in-out;
 
       @media screen and (max-width: 1000px) {
         width: 100%;
@@ -293,11 +313,11 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    &:hover {
-      .recordBtn {
-        transform: translateX(0);
-      }
-    }
+    // &:hover {
+    //   .recordBtn {
+    //     transform: translateX(0);
+    //   }
+    // }
 
     .adaptiveAvatar {
       width: 100%;

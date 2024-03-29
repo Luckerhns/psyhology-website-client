@@ -49,8 +49,8 @@ const TherapyPage = () => {
               </i>
               <ul className={obj.list ? styles.list : ""}>
                 {obj.list
-                  ? obj.list.map((item) => (
-                      <li className={styles.list__item}>{item}</li>
+                  ? obj.list.map((item, i) => (
+                      <li key={i} className={styles.list__item}>{item}</li>
                     ))
                   : null}
               </ul>

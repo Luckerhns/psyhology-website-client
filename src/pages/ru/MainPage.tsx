@@ -11,6 +11,15 @@ import avatar_0 from "../../icons/images/avatar_0.jpeg";
 import avatar_3 from "../../icons/images/avatar_3.jpeg";
 
 const MainPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 1000) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  });
+
   return (
     <MainLayout title="Главная страница психолога | Татьяна Ëремина">
       <div className={styles.title__section}>
@@ -42,10 +51,19 @@ const MainPage = () => {
         </div>
       </div>
 
+      {/* TITLE SECTION ADAPTIVE */}
+
       <div className={styles.titleSectionAdaptive}>
         <img src={avatar_3} className={styles.adaptiveAvatar} />
         <Link to={PublicRoutesEnum.RecordPath}>
-          <div className={styles.recordBtn}>Записаться</div>
+          <div
+            className={styles.recordBtn}
+            style={{
+              transform: isVisible ? "translateX(0)" : "translateX(-50vw)",
+            }}
+          >
+            Записаться
+          </div>
         </Link>
         <div className={styles.textContainer}>Любая проблема имеет решение</div>
       </div>
