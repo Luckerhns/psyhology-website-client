@@ -251,6 +251,13 @@
   min-height: 350px;
   border-radius: 10px;
 
+  @media screen and (max-width: 1000px) {
+    border-radius: 0;
+  }
+  @media screen and (max-width: 650px) {
+    padding: 40px;
+  }
+
   .section__title {
     font-size: $logoFontSize;
     margin-bottom: 50px;

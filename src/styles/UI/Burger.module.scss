@@ -37,6 +37,11 @@
 
     a {
       cursor: pointer;
+      transition: .3s ease-in-out;
+
+      &:hover {
+        color: rgb(234, 11, 11);
+      }
     }
 
     img {

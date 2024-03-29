@@ -2,15 +2,16 @@ import React from "react";
 import MainLayout from "../../Layout/MainLayout";
 import styles from "../../styles/AboutmePage.module.scss";
 import kamen_gorod from "../../icons/aboutme/kamen_gorod.jpeg";
+import avatar_4 from "../../icons/images/avatar_4.jpeg";
 
 const AboutmePage = () => {
   return (
     <MainLayout title="Обо мне | Татьяна Ерёмина">
       <div className={styles.aboutme__title}>
         <div className={styles.left__section}>
-          <h2>Кто же я такая?</h2>
+          <h2 className={styles.title__heading}>Кто же я такая?</h2>
           <br />
-          <div>
+          <div className={styles.title__content}>
             Меня зовут Таня и я - психолог. Родилась я в 1981 году в г.
             Большой-Камень Приморского края. Окончила Дальневосточный
             государственный университет (специальность юриспруденция).
@@ -22,9 +23,10 @@ const AboutmePage = () => {
             обучающие группы. Какое-то время совмещала юридическую и
             психологическую практику.{" "}
           </div>
+        <div className={styles.record__btn}>Записаться</div>
         </div>
         <div className={styles.right__section}>
-          <img src={kamen_gorod} />
+          <img src={avatar_4} />
         </div>
       </div>
       <div className={styles.firstBodyContent}>

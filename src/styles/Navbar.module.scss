@@ -70,6 +70,7 @@
         letter-spacing: 4px;
         font-size: 2.5vw;
         transition: .3s ease-in;
+        cursor: pointer;
 
         &:hover {
           color: red;
@@ -118,6 +119,7 @@
         transition: 0.3s ease-in-out;
         text-align: center;
         font-size: $headerFontSize;
+        cursor: pointer;
 
         &:hover {
           color: red;
