@@ -24,7 +24,7 @@ export const privateRoutes: IRoute[] = [
   { path: PublicRoutesEnum.MainPath, element: MainPage },
   { path: PublicRoutesEnum.TherapyPath, element: TherapyPage },
   { path: PublicRoutesEnum.AboutMePath, element: AboutmePage },
-  { path: PrivateRoutesEnum.CurrentRecord, element: AdminRecords },
+  { path: PrivateRoutesEnum.CurrentRecords, element: AdminRecords },
   { path: PublicRoutesEnum.AdminPath, element: AdminPage },
   { path: PublicRoutesEnum.AgreePath, element: AgreePage },
   { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },

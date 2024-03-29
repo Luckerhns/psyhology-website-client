@@ -53,6 +53,14 @@
   padding: 15px 30px;
   background-color: white;
 
+  @media screen and (max-width: 1000px) {
+    width: 100vw;
+    margin: 0;
+    border-radius: 10px;
+    padding: 15px 30px;
+    background-color: white;
+  }
+
   .current__date {
     width: 50%;
     height: 50px;
@@ -82,7 +90,7 @@
       border-radius: 5px;
       color: green;
       margin: 0;
-      
+
       @media screen and (max-width: 1000px) {
         width: 70%;
         display: flex;
@@ -229,7 +237,7 @@ thead {
   align-items: center;
   flex-direction: column;
   font-size: 0.7vw;
-  
+
   .cell__content {
     width: 100%;
     height: 100%;

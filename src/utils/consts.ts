@@ -16,6 +16,11 @@ export enum PublicRoutesEnum {
   PoliticyPath = "/politicy",
 }
 
+export enum PrivateRoutesEnum {
+  AdminPath = "/admin",
+  CurrentRecords = "/admin-records",
+}
+
 export const PublicNavbarRoutesArray: INavbarRoutesArray = [
   { path: PublicRoutesEnum.MainPath, pathName: "Главная", toProfile: false },
   {
@@ -77,13 +82,10 @@ export const PrivateNavbarRoutesArray: INavbarRoutesArray = [
     toProfile: false,
   },
   {
-    path: PublicRoutesEnum.AdminPath,
+    path: PrivateRoutesEnum.CurrentRecords,
     pathName: "Профиль",
     toProfile: true,
   },
 ];
 
-export enum PrivateRoutesEnum {
-  AdminPath = "/admin",
-  CurrentRecord = "/admin-records",
-}
+

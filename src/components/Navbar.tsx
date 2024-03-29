@@ -31,7 +31,7 @@ const Navbar = () => {
       if (localStorage.getItem("isAdmin")) {
         setDarkTheme();
         setTimeout(() => {
-          navigate(PrivateRoutesEnum.CurrentRecord);
+          navigate(PrivateRoutesEnum.CurrentRecords);
           setLightTheme();
           window.location.reload();
         }, 1000);
