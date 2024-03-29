@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/MainLayout";
 import styles from "../../styles/MainPage.module.scss";
 import Question from "../../components/Question";
@@ -8,10 +8,11 @@ import { Link } from "react-router-dom";
 import { PublicRoutesEnum } from "../../utils/consts";
 import avatar_1 from "../../icons/images/avatar_1.png";
 import avatar_0 from "../../icons/images/avatar_0.jpeg";
+import avatar_3 from "../../icons/images/avatar_3.jpeg";
 
 const MainPage = () => {
   return (
-    <MainLayout>
+    <MainLayout title="Главная страница психолога | Татьяна Ëремина">
       <div className={styles.title__section}>
         <div className={styles.left__container}>
           <h5 className={styles.left__container__title}>Татьяна Ерёмина</h5>
@@ -39,6 +40,14 @@ const MainPage = () => {
         <div className={styles.right__section}>
           <img src={avatar_0} alt="#" />
         </div>
+      </div>
+
+      <div className={styles.titleSectionAdaptive}>
+        <img src={avatar_3} className={styles.adaptiveAvatar} />
+        <Link to={PublicRoutesEnum.RecordPath}>
+          <div className={styles.recordBtn}>Записаться</div>
+        </Link>
+        <div className={styles.textContainer}>Любая проблема имеет решение</div>
       </div>
 
       <div className={styles.about__section}>

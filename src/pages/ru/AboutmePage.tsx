@@ -5,7 +5,7 @@ import kamen_gorod from "../../icons/aboutme/kamen_gorod.jpeg";
 
 const AboutmePage = () => {
   return (
-    <MainLayout>
+    <MainLayout title="Обо мне | Татьяна Ерёмина">
       <div className={styles.aboutme__title}>
         <div className={styles.left__section}>
           <h2>Кто же я такая?</h2>

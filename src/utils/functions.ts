@@ -1,5 +1,4 @@
-import { CalendarData, ICalendarData } from "../types/Calendar";
-import { IUserBlank, IUserBlankArr } from "../types/types";
+import { CalendarData } from "../types/Calendar";
 
 export default function getErrorByStatus(status: number) {
   const errorType: any = {

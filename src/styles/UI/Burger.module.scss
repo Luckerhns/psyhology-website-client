@@ -34,5 +34,9 @@
     flex-direction: column;
     font-size: $adaptiveFontSize-2;
     text-align: center;
+
+    a {
+      cursor: pointer;
+    }
   }
 }

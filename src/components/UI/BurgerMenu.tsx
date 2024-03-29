@@ -2,7 +2,11 @@ import React, { FC } from "react";
 import styles from "../../styles/UI/Burger.module.scss";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Burger from "./Burger";
-import { PublicRoutesEnum } from "../../utils/consts";
+import {
+  PrivateNavbarRoutesArray,
+  PublicNavbarRoutesArray,
+  PublicRoutesEnum,
+} from "../../utils/consts";
 import { useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 
@@ -11,10 +15,11 @@ const BurgerMenu: FC = () => {
   const { openModal, setLightTheme, setDarkTheme, SetBurgerClose } =
     useActions();
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin");
 
   const openPage = (route: string, toProfile?: boolean) => {
     if (toProfile) {
-      if (localStorage.getItem("isAdmin")) {
+      if (isAdmin) {
         setDarkTheme();
         setTimeout(() => {
           navigate(PublicRoutesEnum.AdminPath);
@@ -46,7 +51,7 @@ const BurgerMenu: FC = () => {
           <Burger />
         </div>
         <div className={styles.burger__container__body}>
-          <a onClick={() => openPage(PublicRoutesEnum.MainPath)}>Главная</a>
+          {/* <a onClick={() => openPage(PublicRoutesEnum.MainPath)}>Главная</a>
           <a onClick={() => openPage(PublicRoutesEnum.AboutMePath)}>Обо мне</a>
           <a onClick={() => openPage(PublicRoutesEnum.TherapyPath)}>
             Консультация и терапия
@@ -59,7 +64,18 @@ const BurgerMenu: FC = () => {
             </a>
           ) : (
             <a>О главном</a>
-          )}
+          )} */}
+          {isAdmin
+            ? PrivateNavbarRoutesArray.map((route) => (
+                <a key={route.pathName} onClick={() => openPage(route.path)}>
+                  {route.pathName}
+                </a>
+              ))
+            : PublicNavbarRoutesArray.map((route) => (
+                <a key={route.pathName} onClick={() => openPage(route.path)}>
+                  {route.pathName}
+                </a>
+              ))}
         </div>
       </div>
     </div>

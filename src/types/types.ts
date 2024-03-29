@@ -23,6 +23,12 @@ export interface INavbarRoutes {
   toProfile?: boolean;
 }
 
+export interface ILayout {
+  children?: any,
+  title?: string,
+  metaContent?: string
+}
+
 export type INavbarRoutesArray = INavbarRoutes[];
 
 export type IUserBlankArr = IUserBlank[];

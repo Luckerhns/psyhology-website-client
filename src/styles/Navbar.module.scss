@@ -5,12 +5,11 @@
   width: 100vw;
   height: 130px;
   background-color: #414141;
-
   @media screen and (max-width: 1000px) {
     height: 60px;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
   }
-
+  
   div,
   span,
   a {
@@ -22,7 +21,7 @@
   width: $containerWidth;
   margin: auto;
   height: 100%;
-
+  
   @media screen and (max-width: 1000px) {
     width: 100vw;
     position: sticky;
@@ -30,7 +29,6 @@
     z-index: 100;
     background-color: white;
     padding: 0 7vw;
-    border-bottom: 1px solid $border;
     height: 60px;
     background-color: #414141;
   }
