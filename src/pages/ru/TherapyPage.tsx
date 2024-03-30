@@ -14,8 +14,10 @@ const TherapyPage = () => {
   }, []);
 
   const [scrolled, setScrolled] = useState(false);
+  const [updownScroll, setUpdownScroll] = useState(false);
 
   useEffect(() => {
+    setUpdownScroll(true);
     window.addEventListener("scroll", () => {
       if (window.scrollY > 400) {
         setScrolled(true);
@@ -28,7 +30,12 @@ const TherapyPage = () => {
   return (
     <MainLayout>
       <div className={styles.title__container}>
-        <div className={styles.left__heading}>
+        <div
+          style={{
+            transform: updownScroll ? "translateY(0)" : "translateY(-100vh)",
+          }}
+          className={styles.left__heading}
+        >
           <h4 className={styles.title__heading}>
             {/* @ts-ignore */}
             {therapyPageType[type].title}
@@ -65,9 +72,7 @@ const TherapyPage = () => {
             </div>
             <div
               style={{
-                transform: scrolled
-                  ? "scale(1)"
-                  : "scale(0.5)",
+                transform: scrolled ? "scale(1)" : "scale(0.5)",
               }}
               className={styles.therapyPage__content__body}
             >

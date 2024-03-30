@@ -43,7 +43,8 @@ const MainPage = () => {
             }
             className={styles.record__btn}
           >
-            Записаться
+            <div className={styles.fSpan}>Прямо сейчас!</div>
+            <div className={styles.sSpan}>Записаться</div>
           </Link>
         </div>
         <div className={styles.right__section}>

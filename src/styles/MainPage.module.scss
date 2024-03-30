@@ -67,11 +67,33 @@
       color: black;
       transition: 0.3s ease-in-out;
       font-size: 1vw;
+      overflow: hidden;
+      
+      div {
+        position: absolute;
+        transition: all .25s ease-in-out;
+      }
+
+      .fSpan {
+        transform: translate(-50vw);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       &:hover {
         cursor: pointer;
         transform: scale(1.1) translateX(10px);
         background-color: rgb(202, 202, 202);
+
+        .fSpan {
+          width: 100%;
+          transform: translate(0);
+        }
+
+        .sSpan {
+          transform: translate(50vw);
+        }
       }
 
       @media screen and (max-width: 1000px) {
