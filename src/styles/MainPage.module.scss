@@ -177,7 +177,7 @@
     img {
       height: 100%;
       margin-left: 3vw;
-      transition: .3s ease-in-out;
+      transition: 0.3s ease-in-out;
       @media screen and (max-width: 1000px) {
         display: none;
         // margin-left: 0;
@@ -279,11 +279,20 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 6vw;
+  margin-bottom: 5vw;
+  
   @media screen and (max-width: 1000px) {
+    width: 100vw;
     height: 50vw;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
   }
+  
   @media screen and (max-width: 650px) {
     height: 60vw;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
   }
 
   h5 {

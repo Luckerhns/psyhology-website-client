@@ -10,6 +10,7 @@ import BurgerMenu from "../components/UI/BurgerMenu";
 import { ILayout } from "../types/types";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "../components/UI/ScrollToTop";
+import ImageModal from "../components/UI/Modal/ImageModal";
 
 const MainLayout: FC<ILayout> = ({ children, title, metaContent }) => {
   return (
@@ -22,6 +23,7 @@ const MainLayout: FC<ILayout> = ({ children, title, metaContent }) => {
       <Footer />
       <Background />
       <CalendarModal />
+      <ImageModal />
       <BurgerMenu />
       <ScrollToTop />
     </>

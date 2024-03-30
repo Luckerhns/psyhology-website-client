@@ -12,6 +12,19 @@ const TherapyPage = () => {
       console.log(type);
     }
   }, []);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    });
+  }, []);
+
   return (
     <MainLayout>
       <div className={styles.title__container}>
@@ -39,10 +52,25 @@ const TherapyPage = () => {
         {therapyPageType[type].content.map((obj: ITherapySecondContent) => (
           <div className={styles.therapyPage__content}>
             <div className={styles.therapyPage__content__heading}>
-              <h3>{obj.heading}</h3>
+              <h3
+                style={{
+                  transform: scrolled
+                    ? "scale(1.3) translate(0)"
+                    : "scale(1) translate(-100vw)",
+                }}
+              >
+                {obj.heading}
+              </h3>
               <div className={styles.line}></div>
             </div>
-            <div className={styles.therapyPage__content__body}>
+            <div
+              style={{
+                transform: scrolled
+                  ? "scale(1)"
+                  : "scale(0.5)",
+              }}
+              className={styles.therapyPage__content__body}
+            >
               <div className={styles.text}>{obj.heading_content}</div>
               <i className={styles.list_heading}>
                 {obj.list_heading && obj.list_heading}
@@ -50,7 +78,9 @@ const TherapyPage = () => {
               <ul className={obj.list ? styles.list : ""}>
                 {obj.list
                   ? obj.list.map((item, i) => (
-                      <li key={i} className={styles.list__item}>{item}</li>
+                      <li key={i} className={styles.list__item}>
+                        {item}
+                      </li>
                     ))
                   : null}
               </ul>

@@ -1,6 +1,5 @@
 import { $user } from ".";
 import jwt_decode from "jwt-decode";
-import getErrorByStatus from "../utils/functions";
 import { IUser } from "../types/types";
 
 export const registration = async (dto: {
@@ -8,7 +7,7 @@ export const registration = async (dto: {
   password: string;
   username: string;
 }) => {
-  const { data }  = await $user.post<IUser[]>("api/user/registration", {
+  const { data } = await $user.post<IUser[]>("api/user/registration", {
     email: dto.email,
     password: dto.password,
     username: dto.username,
@@ -16,10 +15,10 @@ export const registration = async (dto: {
   return data;
 };
 
-export const login = async ({ ...dto }) => {
+export const login = async (email: string, password: string) => {
   const { data } = await $user.post("api/user/login", {
-    email: dto.email,
-    password: dto.password,
+    email: email,
+    password: password,
   });
   localStorage.setItem("token", data.token);
   return jwt_decode(data.token);

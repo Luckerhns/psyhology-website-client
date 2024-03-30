@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "../../styles/UI/CalendarModal.module.scss";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { useActions } from "../../hooks/useActions";
+import styles from "../../../styles/UI/CalendarModal.module.scss";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { Button, Dropdown, MenuProps } from "antd";
+import { useActions } from "../../../hooks/useActions";
 
 const recordTypesEnum = [
   "Психология отношений",

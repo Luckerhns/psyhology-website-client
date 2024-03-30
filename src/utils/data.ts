@@ -1,6 +1,7 @@
 import favorites from "../icons/favorites.png";
 import login from "../icons/login.png";
 import loop from "../icons/loop.png";
+import diplom from "../icons/images/avatar_0.jpeg";
 import order from "../icons/order.png";
 import { IBusyRecord } from "../types/Calendar";
 
@@ -45,11 +46,11 @@ export const payIcons = [
 ];
 
 export const rewards = [
-  { id: 1, src: loop },
-  { id: 2, src: loop },
-  { id: 3, src: loop },
-  { id: 4, src: loop },
-  { id: 5, src: loop },
+  { id: 1, src: diplom },
+  { id: 2, src: diplom },
+  { id: 3, src: diplom },
+  { id: 4, src: diplom },
+  { id: 5, src: diplom },
 ];
 
 export const weekDaysRu = [

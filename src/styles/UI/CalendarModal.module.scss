@@ -5,10 +5,10 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
   // pointer-events: none;
   opacity: 0;
   top: 0;
@@ -149,6 +149,8 @@
   }
 }
 
+// ACTIVE MODAL
+
 .main__container__time.active {
   opacity: 1;
   transition: 1s all;
@@ -159,6 +161,8 @@
 .modal__content.modal__active {
   opacity: 1;
 }
+
+// ANIMATION MODAL
 
 @keyframes openModal {
   0% {

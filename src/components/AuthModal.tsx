@@ -32,8 +32,7 @@ const AuthModal: FC = () => {
     if (e.key === "Escape") closeModal();
   });
   const { isOpen } = useTypedSelector((state) => state.modal);
-  const { closeModal, openModal, registration } = useActions();
-  const [login, setLogin] = useState<boolean>(false);
+  const { closeModal, openModal, login } = useActions();
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
@@ -131,11 +130,7 @@ const AuthModal: FC = () => {
             <button
               className={styles.registration__button}
               disabled={activeButton}
-              onClick={() => {
-                localStorage.setItem("isAdmin", "true");
-                localStorage.setItem("template", JSON.stringify(event));
-                navigate("/");
-              }}
+              onClick={() => login(email, password)}
               style={{
                 background: activeButton ? "darkgray" : "",
                 transition: ".3s ease-in",

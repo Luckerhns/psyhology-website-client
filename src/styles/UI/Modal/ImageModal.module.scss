@@ -1,0 +1,57 @@
+.imageModalContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // pointer-events: none;
+  opacity: 0;
+  display: none;
+  transition: 1s all;
+
+  .imageModalContent {
+    // width: 45vw;
+    // height: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+
+    img {
+      max-width: 70vw;
+      max-height: 70vh;
+      border-radius: 10px;
+    }
+  }
+}
+
+// ACTIVE MODAL
+
+.imageModalContainer.active {
+  opacity: 1;
+  transition: 1s all;
+  display: flex;
+  animation: openModal 1s;
+}
+
+// ANIMATION MODAL
+
+@keyframes openModal {
+  0% {
+    display: none;
+  }
+
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

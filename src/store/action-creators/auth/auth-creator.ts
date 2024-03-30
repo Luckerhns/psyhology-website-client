@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
-import { registration } from "../../../http/userApi";
-import getErrorByStatus from "../../../utils/functions";
+import { login, registration } from "../../../http/userApi";
 import { AppDispatch } from "./../../store";
 import {
   AuthActionsEnum,
@@ -28,29 +27,20 @@ export const AuthActionCreators = {
     type: AuthActionsEnum.SET_IS_LOADING,
     payload: isLoading,
   }),
-  registration:
-    (email: string, password: string, username: string) =>
-    async (dispatch: AppDispatch) => {
-      try {
-        dispatch(AuthActionCreators.setIsLoading(true));
-        setTimeout(async () => {
-          try {
-            const data = await registration({
-              email,
-              password,
-              username,
-            });
-            dispatch(AuthActionCreators.setIsAuth(true));
-            localStorage.setItem('isAuth', "true")
-          } catch (error: any) {
-            const statusCode = error.response.status;
-            const errorType = getErrorByStatus(statusCode);
-            console.log(getErrorByStatus(statusCode));
-            dispatch(AuthActionCreators.setError(errorType));
-          }
-        });
-      } catch (error) {
-        dispatch(AuthActionCreators.setError("Некорректные данные"));
-      }
-    },
+  login: (email: string, password: string) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(AuthActionCreators.setIsLoading(true));
+      setTimeout(async () => {
+        try {
+          const data = await login(email, password);
+          dispatch(AuthActionCreators.setIsAuth(true));
+          localStorage.setItem("isAdmin", "true");
+        } catch (error) {
+          console.log("Ошибка входа: ", error);
+        }
+      });
+    } catch (error) {
+      console.log("Общая ошибка входа: ", error);
+    }
+  },
 };
