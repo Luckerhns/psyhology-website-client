@@ -3,6 +3,7 @@ import AdminPage from "../pages/ru/AdminPage";
 import AdminRecords from "../pages/ru/AdminRecordsPage";
 import AuthPage from "../pages/ru/AuthPage";
 import MainPage from "../pages/ru/MainPage";
+import PayPage from "../pages/ru/PayPage";
 import RecordPage from "../pages/ru/RecordPage";
 import TherapyPage from "../pages/ru/TherapyPage";
 import AgreePage from "../pages/ru/license/AgreePage";
@@ -18,6 +19,7 @@ export const publicRoutes: IRoute[] = [
   { path: PublicRoutesEnum.AuthPath, element: AuthPage },
   { path: PublicRoutesEnum.AgreePath, element: AgreePage },
   { path: PublicRoutesEnum.PoliticyPath, element: PoliticyPage },
+  { path: PublicRoutesEnum.PayPath, element: PayPage },
 ];
 
 export const privateRoutes: IRoute[] = [

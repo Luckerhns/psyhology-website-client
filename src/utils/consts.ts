@@ -1,19 +1,16 @@
 import { INavbarRoutesArray } from "../types/types";
 
-export enum catalogPaths {}
-
 export enum PublicRoutesEnum {
   MainPath = "/",
   CatalogPath = "/catalog",
   AdminPath = "/admin",
-  BasketPath = "/basket",
-  FavoritesPath = "/favorites",
   TherapyPath = "/therapy",
   AboutMePath = "/aboutme",
   AuthPath = "/auth-path",
   RecordPath = "/therapy/record",
   AgreePath = "/agree",
   PoliticyPath = "/politicy",
+  PayPath = '/therapy/record/pay-path'
 }
 
 export enum PrivateRoutesEnum {

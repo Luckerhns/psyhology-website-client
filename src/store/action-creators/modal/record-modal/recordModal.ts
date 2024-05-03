@@ -1,4 +1,3 @@
-import { notSelectedTimes } from "./../../../../components/Calendar/CalendarModal";
 export interface RecordModalState {
   isRecordOpen: boolean;
   allTimes: [string[], string[]];

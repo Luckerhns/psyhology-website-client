@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Психологический сайт Татьяны Ëремины"
-    />
+    <meta name="description" content="Психологический сайт Татьяны Ëремины" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -39,5 +36,36 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
+    <script type="text/javascript" defer="true">
+      const TPF = document.getElementById("payform-tinkoff");
+
+      TPF.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const { description, amount, email, phone, receipt } = TPF;
+
+        if (receipt) {
+          if (!email.value && !phone.value)
+            return alert("Поле E-mail или Phone не должно быть пустым");
+
+          TPF.receipt.value = JSON.stringify({
+            EmailCompany: "mail@mail.com",
+            Taxation: "patent",
+            Items: [
+              {
+                Name: description.value || "Оплата",
+                Price: amount.value + "00",
+                Quantity: 1.0,
+                Amount: amount.value + "00",
+                PaymentMethod: "full_prepayment",
+                PaymentObject: "service",
+                Tax: "none",
+              },
+            ],
+          });
+        }
+        pay(TPF);
+      });
+    </script>
   </body>
 </html>

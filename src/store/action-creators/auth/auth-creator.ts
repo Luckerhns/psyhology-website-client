@@ -35,12 +35,14 @@ export const AuthActionCreators = {
           const data = await login(email, password);
           dispatch(AuthActionCreators.setIsAuth(true));
           localStorage.setItem("isAdmin", "true");
-        } catch (error) {
-          console.log("Ошибка входа: ", error);
+          window.location.href = '/'
+          window.location.reload()
+        } catch (error: any) {
+          console.log("Ошибка входа: ", error.message);
         }
       });
-    } catch (error) {
-      console.log("Общая ошибка входа: ", error);
+    } catch (error: any) {
+      console.log("Общая ошибка входа: ", error.message);
     }
   },
 };

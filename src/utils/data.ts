@@ -10,7 +10,7 @@ export const event = [
     date: "2023-01-10",
     username: "dsadsa",
     freeTimes: [],
-    busyTimes: [{time: "19:00", date: "2023-01-10"}],
+    busyTimes: [{ time: "19:00", date: "2023-01-10" }],
     notSelectedTimes: [
       "10:00",
       "11:00",
@@ -98,3 +98,21 @@ export const websiteOwner = "Еремина Татьяна";
 export const websiteOwnerPhone = "+7-993-354-72-60";
 export const websiteOwnerEmail = "Luckerhackerr@gmail.com";
 export const INN = "770370256650";
+
+export const recordTypesEnum = [
+  "Психология отношений",
+  "Проработка травм",
+  "Психологическая неустойка",
+];
+
+export const notSelectedTimes = [
+  "11:00",
+  "12:00",
+  "13:00",
+  "14:00",
+  "15:00",
+  "16:00",
+  "17:00",
+  "18:00",
+  "19:00",
+];

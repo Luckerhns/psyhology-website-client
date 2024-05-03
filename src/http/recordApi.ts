@@ -20,9 +20,7 @@ export const getCalendar = async () => {
 
 export const userNewRecord = async (dto: any) => {
   try {
-    const { data } = await $user.post("api/busy-times/create-busy-record", {
-      ...dto,
-    });
+    const { data } = await $user.post("api/busy-times/create-busy-record", dto);
 
     return data;
   } catch (error) {

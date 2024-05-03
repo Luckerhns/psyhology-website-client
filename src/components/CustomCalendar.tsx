@@ -4,11 +4,10 @@ import { Calendar } from "antd";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import locale from "antd/es/date-picker/locale/ru_RU";
-import { event, monthsRu, weekDaysRu } from "../utils/data";
+import { event, monthsRu, notSelectedTimes, weekDaysRu } from "../utils/data";
 import { useActions } from "../hooks/useActions";
 import CalendarHeaderComponent from "./Calendar/CalendarHeader";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import { notSelectedTimes } from "./Calendar/CalendarModal";
 import FreeTimesCell from "./UI/Cells/FreeTimesCell";
 import BusyTimesCell from "./UI/Cells/BusyTimesCell";
 import { getCalendar } from "../http/recordApi";
@@ -27,7 +26,6 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
     closeRecordModal,
     selectUserDate,
     setTimes,
-    OpenUserModalTimes,
   } = useActions();
   const { selectedStateDate, allTimes, selectedUserDate } = useTypedSelector(
     (state) => state.recordModal
