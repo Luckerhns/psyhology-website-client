@@ -93,7 +93,7 @@ export const monthsRuList = [
   "Декабрь",
 ];
 
-export const link = "http://localhost:3000";
+export const link = "http://psyhology.fun:3000";
 export const websiteOwner = "Еремина Татьяна";
 export const websiteOwnerPhone = "+7-993-354-72-60";
 export const websiteOwnerEmail = "Luckerhackerr@gmail.com";

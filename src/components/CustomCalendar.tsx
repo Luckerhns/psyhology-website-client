@@ -154,7 +154,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
 
                   if (freeTimesLength < 1 && +dateCounter === 1) {
                     dateCounter = 0;
-                    return <BusyTimesCell />;
+                    return <BusyTimesCell key={key} />;
                   } else {
                     dateCounter = 0;
                     return (
@@ -167,7 +167,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
                 } else {
                   counter++;
                   if (counter === +events.length) {
-                    return <BusyTimesCell />;
+                    return <BusyTimesCell key={key} />;
                   }
                 }
                 return <div></div>;
