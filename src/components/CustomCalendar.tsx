@@ -142,7 +142,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
           if (!forAdmin) {
             return (
               events !== undefined &&
-              events.map((eventDate, key) => {
+              events.map((eventDate, key: number) => {
                 const busyTimesLength = eventDate.busyTimes.length;
                 const freeTimesLength = eventDate.freeTimes.length;
 
@@ -183,7 +183,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
             const selectedCellDate = date.format("YYYY-MM-DD");
             let counter = 0;
             if (events.length > 0) {
-              return events.map((eventDate, key) => {
+              return events.map((eventDate, key: number) => {
                 if (eventDate.busyTimes.length > 0 && counter < 1) {
                   counter++;
                   return (

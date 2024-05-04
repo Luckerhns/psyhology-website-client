@@ -56,7 +56,7 @@ const TherapyPage = () => {
       </div>
 
       <div className={styles.therapyPage__description}>
-        {therapyPageType[type].content.map((obj: ITherapySecondContent, key) => (
+        {therapyPageType[type].content.map((obj: ITherapySecondContent, key: number) => (
           <div className={styles.therapyPage__content} key={key}>
             <div className={styles.therapyPage__content__heading}>
               <h3
