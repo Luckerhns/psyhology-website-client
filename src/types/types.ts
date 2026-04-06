@@ -24,9 +24,20 @@ export interface INavbarRoutes {
 }
 
 export interface ILayout {
-  children?: any,
-  title?: string,
-  metaContent?: string
+  children?: any;
+  title?: string;
+  metaContent?: string;
+}
+
+export interface IRecord {
+  id: number;
+  date: string;
+  time: string;
+  phone: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  patronymic: string;
 }
 
 export type INavbarRoutesArray = INavbarRoutes[];

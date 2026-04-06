@@ -1,4 +1,4 @@
-import { IUserRecord } from "./../../../../types/Calendar";
+import { ICalendarData, IUserRecord } from "./../../../../types/Calendar";
 import { newRecord, userNewRecord } from "../../../../http/recordApi";
 import { AppDispatch } from "../../../store";
 import {
@@ -13,6 +13,7 @@ import {
   SetSelectedTime,
   SetUserError,
 } from "./recordModal";
+import { IRecord } from "../../../../types/types";
 
 export const RecordActionCreators = {
   openRecordModal: (): SetRecordModalOpen => ({
@@ -72,13 +73,13 @@ export const RecordActionCreators = {
             dispatch(RecordActionCreators.getDates(dates));
           } catch (error) {
             dispatch(
-              RecordActionCreators.setRecordError("Ошибка в получении времени")
+              RecordActionCreators.setRecordError("Ошибка в получении времени"),
             );
           }
         });
       } catch (error) {
         dispatch(
-          RecordActionCreators.setRecordError("Ошибка получения данных")
+          RecordActionCreators.setRecordError("Ошибка получения данных"),
         );
         console.log(error);
       }
@@ -128,7 +129,7 @@ export const RecordActionCreators = {
       lastname: string,
       patronymic: string,
       number: string,
-      email: string
+      email: string,
     ) =>
     async (dispatch: AppDispatch) => {
       try {
@@ -149,16 +150,28 @@ export const RecordActionCreators = {
           } catch (error) {
             console.log(error);
             RecordActionCreators.setUserError(
-              "Сейчас нельзя выполнить запись, попробуйте позже!"
+              "Сейчас нельзя выполнить запись, попробуйте позже!",
             );
           }
         });
       } catch (error) {
         dispatch(
           RecordActionCreators.setRecordError(
-            "Ошибка при создании записи, попробуйте позже!"
-          )
+            "Ошибка при создании записи, попробуйте позже!",
+          ),
         );
       }
     },
+
+  updateCalendar: (
+    calendar: any
+  ) => async (dispatch: AppDispatch) => {
+    try {
+      const newCalendar = await $
+      console.log(recordId)
+      
+    } catch (error) {
+      dispatch(RecordActionCreators.setRecordError("Не получилось удалить запись!"))
+    }
+  },
 };

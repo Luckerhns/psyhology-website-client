@@ -69,6 +69,7 @@ export interface GetDatesRecordModalState {
   ];
 }
 
+
 export interface SetSelectedTime {
   type: RecordActionsEnum.SET_SELECTED_TIME;
   payload: string;

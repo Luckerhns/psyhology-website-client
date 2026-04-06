@@ -36,3 +36,13 @@ export const getBusyRecords = async () => {
     console.log("Ошибка в получении готовых записей!", error);
   }
 };
+
+export const deleteRecord = async (id: number) => {
+  try {
+    await $user.post('api/admin/calendar/delete-record', [id])
+
+    window.location.reload()
+  } catch (error) {
+    console.log("Ошибка при удалении записи!")
+  }
+}  

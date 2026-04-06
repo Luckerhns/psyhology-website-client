@@ -7,12 +7,14 @@ import { useActions } from "../../../hooks/useActions";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { Link } from "react-router-dom";
 import { PublicRoutesEnum } from "../../../utils/consts";
+import { $user } from "../../../http";
+import { userNewRecord } from "../../../http/recordApi";
 
 const UserModal = () => {
   const items: MenuProps["items"] = [];
 
   const { allTimes, selectedUserDate, selectedTime } = useTypedSelector(
-    (state) => state.recordModal
+    (state) => state.recordModal,
   );
 
   const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +75,7 @@ const UserModal = () => {
             patronymic,
             selectedTime,
             phone,
-            validEmail
+            validEmail,
           )
             ? "Заполните поля"
             : "Отлично"}
@@ -122,7 +124,7 @@ const UserModal = () => {
           </div>
         </div>
       </div>
-      <Link
+      <button
         className={
           !accessForm
             ? styles.record__time__btn
@@ -135,15 +137,26 @@ const UserModal = () => {
             patronymic,
             selectedTime,
             phone,
-            validEmail
+            validEmail,
           )
-            ? () => {}
+            ? () => {
+                console.log(
+                  userNewRecord([
+                    selectedUserDate,
+                    selectedTime,
+                    firstname,
+                    lastname,
+                    patronymic,
+                    phone,
+                    email,
+                  ]),
+                );
+              }
             : () => {}
         }
-        to={PublicRoutesEnum.PayPath}
       >
-        Перейти к оплате
-      </Link>
+        Записаться
+      </button>
     </div>
   );
 };

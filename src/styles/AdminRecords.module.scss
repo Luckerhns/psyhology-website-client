@@ -8,22 +8,42 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin: auto;
+
+    div {
+      margin: 5px;
+    }
 
     .record {
       width: 350px;
       height: 100%;
       display: flex;
       flex-direction: column;
-      margin: 10px 10px;
-      padding: calc(100% / 30);
+      margin: 5px 5px;
+      padding: calc(100% / 50);
       border: 1px solid rgb(142, 142, 142);
       border-radius: 20px;
       background-color: rgb(162, 162, 162);
       opacity: 0.7;
+      
+      
+      .delete__record__btn {
+        display: flex;
+        align-self: center;
+        padding: 7.5px;
+        margin-top: 10px;
+        background-color: gray;
+        border-radius: 10px;
+        
+      }
+
+      .delete__record__btn:hover {
+        background-color: rgb(203, 34, 34);
+        color: white;
+        transition: 0.5s ease;
+      }
     }
   }
 

@@ -7,7 +7,7 @@ const BusyTimesCell = () => {
     className={`${styles.record__cell} ${styles.disabled__cell}`}
   >
     <div className={styles.cell__content}>
-      занято
+      Тут пусто
     </div>
   </div>
   );

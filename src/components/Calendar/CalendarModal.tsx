@@ -120,6 +120,7 @@ const CalendarModal = () => {
               <div className={styles.admin__busy__time}>
                 <h5>Занятое время</h5>
                 {events.map((e) => {
+                  console.log(e)
                   {
                     return (
                       e.date === selectedStateDate &&

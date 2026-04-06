@@ -4,11 +4,13 @@ import MainLayout from "../../Layout/MainLayout";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import { busyRecords } from "../../utils/data";
-import { getBusyRecords } from "../../http/recordApi";
+import { deleteRecord, getBusyRecords } from "../../http/recordApi";
 import { getDateIsActive } from "../../utils/functions";
+import { IRecord } from "../../types/types";
+import { $user } from "../../http";
 
 const AdminRecords = () => {
-  const { logOut } = useActions();
+  const { logOut, createRecord, updateCalendar } = useActions();
   const [record, setRecord] = useState(busyRecords);
   const currentMonth = new Date().getMonth() + 1;
   const currentDay = new Date().getDate();
@@ -28,10 +30,10 @@ const AdminRecords = () => {
               const startMonth = e.date.indexOf("-");
               const startDay = e.date.lastIndexOf("-");
               const recordDay = parseInt(
-                e.date.slice(startDay + 1, startDay + 3)
+                e.date.slice(startDay + 1, startDay + 3),
               );
               const recordMonth = parseInt(
-                e.date.slice(startMonth + 1, startMonth + 3)
+                e.date.slice(startMonth + 1, startMonth + 3),
               );
               const currentRecord = [recordMonth, recordDay];
 
@@ -52,6 +54,12 @@ const AdminRecords = () => {
                   <div className={styles.record__lastname}>{e.lastname}</div>
                   <div className={styles.record__patronymic}>
                     {e.patronymic}
+                  </div>
+                  <div
+                    onClick={() => deleteRecord(e.id)}
+                    className={styles.delete__record__btn}
+                  >
+                    Удалить запись
                   </div>
                 </div>
               );

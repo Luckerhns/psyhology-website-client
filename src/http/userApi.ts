@@ -7,11 +7,13 @@ export const registration = async (dto: {
   password: string;
   username: string;
 }) => {
-  const { data } = await $user.post<IUser[]>("api/user/registration", {
+  const { data } = await $user.post("api/user/registration", {
     email: dto.email,
     password: dto.password,
     username: dto.username,
   });
+  localStorage.setItem("token", data.token);
+  const bool = await localStorage.setItem("isAdmin", "true")
   return data;
 };
 
@@ -21,5 +23,6 @@ export const login = async (email: string, password: string) => {
     password: password,
   });
   localStorage.setItem("token", data.token);
+
   return data;
 };

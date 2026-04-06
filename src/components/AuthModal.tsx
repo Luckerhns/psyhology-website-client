@@ -8,6 +8,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { useNavigate } from "react-router-dom";
 import { PublicRoutesEnum } from "../utils/consts";
+import { registration } from "../http/userApi";
 
 const AuthModal: FC = () => {
   const event = [
@@ -54,6 +55,10 @@ const AuthModal: FC = () => {
   }
 
   const activeButton = passwordError || emailError !== "" ? true : false;
+
+  const isAdmin = localStorage.getItem("isAdmin");
+
+  const [admin, useAdmin] = useState<any>(isAdmin);
 
   return (
     <div

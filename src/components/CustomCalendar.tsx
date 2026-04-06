@@ -21,27 +21,29 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
   const [month, setMonth] = useState<any>();
   const [weekDay, setWeekDay] = useState(0);
   const [selectedDate, setSelectedDate] = useState("");
-  const {
-    openRecordModalTimes,
-    closeRecordModal,
-    selectUserDate,
-    setTimes,
-  } = useActions();
+  const { openRecordModalTimes, closeRecordModal, selectUserDate, setTimes } =
+    useActions();
   const { selectedStateDate, allTimes, selectedUserDate } = useTypedSelector(
-    (state) => state.recordModal
+    (state) => state.recordModal,
   );
 
   const [events, setEvents] = useState(event);
 
-  useEffect(() => {
-    getCalendar()
-      .then((value) => {
-        //@ts-ignore
-        setEvents(value ? value : event);
-      })
+  useEffect(
+    () =>
+        {
+        getCalendar()
+          .then((value) => {
+            //@ts-ignore
+            setEvents(value ? value : event);
+            console.log(events, value, "Это получение календаря")
+          })
+          //@ts-ignore
+          .catch(console.log("не удалось получить value в календаре"));
+      },
       //@ts-ignore
-      .catch(console.log("ERROR"));
-  }, []);
+    [],
+  );
 
   const currentWeekDay = weekDaysRu[weekDay - 1];
 
@@ -81,7 +83,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
     const allTimes = findCurrentDate(events, selectedDate);
     openRecordModalTimes(allTimes, selectedDate, events);
     setTimeout(() => closeRecordModal(), 200);
-    console.log("GGGG");
+    console.log("UseEffect сворачивает модалку");
   }, []);
 
   // localStorage.clear()
@@ -91,7 +93,7 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
   const openRecordModal = async (
     withModal?: boolean,
     date?: string,
-    addNewDate?: boolean
+    addNewDate?: boolean,
   ) => {
     const listLength = events?.length;
     const allTimes = findCurrentDate(events, selectedStateDate);
@@ -143,34 +145,37 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
             return (
               events !== undefined &&
               events.map((eventDate, key: number) => {
-                const busyTimesLength = eventDate.busyTimes.length;
-                const freeTimesLength = eventDate.freeTimes.length;
+                try {
+                  const busyTimesLength = eventDate.busyTimes.length;
+                  const freeTimesLength = eventDate.freeTimes.length;
 
-                const selectedRecordField =
-                  date.format("YYYY-MM-DD") === selectedDate;
+                  const selectedRecordField =
+                    date.format("YYYY-MM-DD") === selectedDate;
 
-                if (eventDate.date.includes(date.format("YYYY-MM-DD"))) {
-                  dateCounter++;
+                  if (eventDate.date.includes(date.format("YYYY-MM-DD"))) {
+                    dateCounter++;
 
-                  if (freeTimesLength < 1 && +dateCounter === 1) {
-                    dateCounter = 0;
-                    return <BusyTimesCell key={key} />;
+                    if (freeTimesLength < 1 && +dateCounter === 1) {
+                      dateCounter = 0;
+                      return <BusyTimesCell key={key} />;
+                    } else {
+                      dateCounter = 0;
+                      console.log(eventDate + " пуст");
+                      return (
+                        <FreeTimesCell
+                          events={events}
+                          selectedRecordField={selectedRecordField}
+                        />
+                      );
+                    }
                   } else {
-                    dateCounter = 0;
-                    return (
-                      <FreeTimesCell
-                        events={events}
-                        selectedRecordField={selectedRecordField}
-                      />
-                    );
+                    counter++;
+                    if (counter === +events.length) {
+                      return <BusyTimesCell key={key} />;
+                    }
                   }
-                } else {
-                  counter++;
-                  if (counter === +events.length) {
-                    return <BusyTimesCell key={key} />;
-                  }
-                }
-                return <div></div>;
+                  return <div></div>;
+                } catch (error) {}
               })
             );
           }
