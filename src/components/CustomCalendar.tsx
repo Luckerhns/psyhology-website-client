@@ -13,9 +13,14 @@ import BusyTimesCell from "./UI/Cells/BusyTimesCell";
 import { getCalendar } from "../http/recordApi";
 import { findCurrentDate } from "../utils/functions";
 import AdminCell from "./UI/Cells/AdminCell";
+import { $user } from "../http";
+import { ICalendarData } from "../types/Calendar";
 
-const CustomCalendar = ({ withHeader, forAdmin }: any) => {
-  const [currentDate, setCurrentDate] = useState(() => dayjs("2023-01-25"));
+const CustomCalendar = ({ withHeader }: any) => {
+  const forAdmin = localStorage.getItem("isAdmin");
+  const todayStr = `${new Date().getFullYear()}-${String(new Date().getDate()).padStart(2, "0")}-${String(new Date().getMonth() + 1).padStart(2, "0")}`;
+  const [currentDate, setCurrentDate] = useState(() => dayjs(todayStr));
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [selectedValue, setSelectedValue] = useState(() => dayjs("2023-01-25"));
   const [day, setDay] = useState<any>();
   const [month, setMonth] = useState<any>();
@@ -28,27 +33,27 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
   );
 
   const [events, setEvents] = useState(event);
-
-  useEffect(
-    () =>
-        {
-        getCalendar()
-          .then((value) => {
-            //@ts-ignore
-            setEvents(value ? value : event);
-            console.log(events, value, "Это получение календаря")
-          })
-          //@ts-ignore
-          .catch(console.log("не удалось получить value в календаре"));
-      },
-      //@ts-ignore
-    [],
-  );
+  useEffect(() => {
+    const fetchCalendar = async () => {
+      try {
+        const calendar = await getCalendar();
+        setEvents(calendar);
+        setIsDataLoaded(true);
+        console.log(calendar, "Updated calendar data loaded");
+      } catch (error) {
+        console.log(error, "Не удалось получить календарь!");
+        setEvents(event);
+        setIsDataLoaded(true);
+      }
+    };
+    fetchCalendar();
+  }, []);
 
   const currentWeekDay = weekDaysRu[weekDay - 1];
 
   const onPanelChange = (newValue: Dayjs) => {
     setCurrentDate(newValue);
+    console.log(newValue, "Выбранная дата");
   };
 
   let [isDateExists, setIsDateExists] = useState(false);
@@ -86,8 +91,6 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
     console.log("UseEffect сворачивает модалку");
   }, []);
 
-  // localStorage.clear()
-
   const [dateExists, setDateExists] = useState(true);
 
   const openRecordModal = async (
@@ -95,24 +98,35 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
     date?: string,
     addNewDate?: boolean,
   ) => {
-    const listLength = events?.length;
-    const allTimes = findCurrentDate(events, selectedStateDate);
-    !withModal && openRecordModalTimes(allTimes, selectedDate, events);
-    if (!isDateExists && addNewDate) {
-      //@ts-ignore
-      setEvents((prevState) => [
-        ...prevState,
-        {
-          date: date ? date : String(selectedDate),
-          username: "",
-          freeTimes: [],
-          //@ts-ignore
-          notSelectedTimes: [...notSelectedTimes],
-          busyTimes: [],
-        },
-      ]);
-    }
-    console.log("GGGG");
+    const targetDate = date || selectedDate;
+
+    const updatedEvents = events.some((e: any) => e.date === targetDate)
+      ? events
+      : [
+          ...events,
+          {
+            date: targetDate,
+            username: "",
+            freeTimes: [],
+            notSelectedTimes: [
+              "11:00",
+              "12:00",
+              "13:00",
+              "14:00",
+              "15:00",
+              "16:00",
+              "17:00",
+              "18:00",
+              "19:00",
+            ],
+            busyTimes: [],
+          },
+        ];
+    setEvents(updatedEvents);
+
+    const allTimes = findCurrentDate(updatedEvents, targetDate);
+    !withModal && openRecordModalTimes(allTimes, targetDate, updatedEvents);
+
     setIsDateExists(true);
   };
 
@@ -135,97 +149,51 @@ const CustomCalendar = ({ withHeader, forAdmin }: any) => {
             monthsList={monthsRu[month]}
             currentYear={currentDate.get("year")}
             forAdmin={Boolean(localStorage.getItem("isAdmin"))}
+            currentMonth={""}
           />
         )}
         cellRender={(date: any) => {
-          let counter = 0;
-          let dateCounter = 0;
+          const today = dayjs();
+          if (date.isBefore(today, "day")) {
+            return <div className={styles.disabled__cell}>Прошедшая дата</div>;
+          }
+          const eventDate = date.format("YYYY-MM-DD");
+
+          const matchingEvent = events.find(
+            (event: any) => event.date === eventDate,
+          );
 
           if (!forAdmin) {
-            return (
-              events !== undefined &&
-              events.map((eventDate, key: number) => {
-                try {
-                  const busyTimesLength = eventDate.busyTimes.length;
-                  const freeTimesLength = eventDate.freeTimes.length;
-
-                  const selectedRecordField =
-                    date.format("YYYY-MM-DD") === selectedDate;
-
-                  if (eventDate.date.includes(date.format("YYYY-MM-DD"))) {
-                    dateCounter++;
-
-                    if (freeTimesLength < 1 && +dateCounter === 1) {
-                      dateCounter = 0;
-                      return <BusyTimesCell key={key} />;
-                    } else {
-                      dateCounter = 0;
-                      console.log(eventDate + " пуст");
-                      return (
-                        <FreeTimesCell
-                          events={events}
-                          selectedRecordField={selectedRecordField}
-                        />
-                      );
-                    }
-                  } else {
-                    counter++;
-                    if (counter === +events.length) {
-                      return <BusyTimesCell key={key} />;
-                    }
-                  }
-                  return <div></div>;
-                } catch (error) {}
-              })
-            );
+            if (matchingEvent) {
+              //@ts-ignore
+              return (
+                <FreeTimesCell
+                  eventDate={matchingEvent}
+                  openRecordModal={openRecordModal}
+                  events={events}
+                  selectedCellDate={eventDate}
+                  selectedRecordField={true}
+                  isDateExists={isDateExists}
+                />
+              );
+            } 
+            return <div>Нету свободных дат</div>
           }
 
-          // ADMIN CALENDAR
-
           if (forAdmin) {
-            const selectedRecordField =
-              date.format("YYYY-MM-DD") === selectedDate;
-            const selectedCellDate = date.format("YYYY-MM-DD");
-            let counter = 0;
-            if (events.length > 0) {
-              return events.map((eventDate, key: number) => {
-                if (eventDate.busyTimes.length > 0 && counter < 1) {
-                  counter++;
-                  return (
-                    <AdminCell
-                      openRecordModal={openRecordModal}
-                      eventDate={eventDate}
-                      selectedCellDate={selectedCellDate}
-                      selectedRecordField={selectedRecordField}
-                      events={events}
-                      key={key}
-                      isDateExists={isDateExists}
-                    />
-                  );
-                } else {
-                  counter = 1;
-                  if (counter > 1) {
-                    return <div>error</div>;
-                  }
-                }
-              });
-            } else {
-              return (
-                <div className={`${styles.record__cell}`}>
-                  <div className={styles.admin__btn__container}>
-                    <div
-                      style={{ opacity: selectedRecordField ? 1 : 0 }}
-                      className={styles.admin__btn}
-                      onClick={
-                        selectedRecordField ? () => openRecordModal() : () => {}
-                      }
-                    >
-                      редактировать
-                    </div>
-                  </div>
-                </div>
-              );
-            }
+            const matchingEvent = events.find(
+              (event: any) => event.date === eventDate,
+            ) as ICalendarData | undefined;
+            return (
+              <AdminCell
+                eventDate={matchingEvent}
+                openRecordModal={openRecordModal}
+                events={events}
+                selectedCellDate={eventDate}
+                selectedRecordField={true}
+                isDateExists={isDateExists}
+              />
+            );
           }
         }}
       />

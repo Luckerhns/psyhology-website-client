@@ -65,23 +65,14 @@ export const RecordActionCreators = {
     (allTimes: any, date: string, dates?: any) =>
     async (dispatch: AppDispatch) => {
       try {
-        setTimeout(() => {
-          try {
-            dispatch(RecordActionCreators.openRecordModal());
-            dispatch(RecordActionCreators.setTimes(allTimes));
-            dispatch(RecordActionCreators.selectDate(date));
-            dispatch(RecordActionCreators.getDates(dates));
-          } catch (error) {
-            dispatch(
-              RecordActionCreators.setRecordError("Ошибка в получении времени"),
-            );
-          }
-        });
+        dispatch(RecordActionCreators.openRecordModal());
+        dispatch(RecordActionCreators.setTimes(allTimes));
+        dispatch(RecordActionCreators.selectDate(date));
+        dispatch(RecordActionCreators.getDates(dates));
       } catch (error) {
         dispatch(
-          RecordActionCreators.setRecordError("Ошибка получения данных"),
+          RecordActionCreators.setRecordError("Ошибка в получении времени"),
         );
-        console.log(error);
       }
     },
 
@@ -107,6 +98,8 @@ export const RecordActionCreators = {
       setTimeout(async () => {
         try {
           const updatedCalendar = await newRecord(record);
+          console.log(record)
+          console.log(updatedCalendar, 'Календарь был успешно сохранен!')
         } catch (error) {
           console.log(error);
         }
@@ -167,8 +160,8 @@ export const RecordActionCreators = {
     calendar: any
   ) => async (dispatch: AppDispatch) => {
     try {
-      const newCalendar = await $
-      console.log(recordId)
+      // const newCalendar = await 
+      // console.log(recordId)
       
     } catch (error) {
       dispatch(RecordActionCreators.setRecordError("Не получилось удалить запись!"))

@@ -6,7 +6,14 @@ import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { findCurrentDate } from "../../../utils/functions";
 import { IFreeTimesCell } from "../../../types/Calendar";
 
-const FreeTimesCell: FC<IFreeTimesCell> = ({ selectedRecordField, events }) => {
+const FreeTimesCell: FC<any> = ({
+  eventDate,
+  openRecordModal,
+  events,
+  selectedCellDate,
+  selectedRecordField,
+  isDateExists,
+}) => {
   const {
     selectDate,
     setTimes,
@@ -15,7 +22,7 @@ const FreeTimesCell: FC<IFreeTimesCell> = ({ selectedRecordField, events }) => {
     setSelectedTime,
   } = useActions();
   const { allTimes, selectedStateDate, selectedUserDate } = useTypedSelector(
-    (state) => state.recordModal
+    (state) => state.recordModal,
   );
 
   const openUserModal = () => {

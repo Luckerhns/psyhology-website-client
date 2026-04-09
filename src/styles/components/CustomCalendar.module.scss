@@ -147,7 +147,6 @@ thead {
   .cell__content {
     width: 100%;
     display: flex;
-    margin: 10px 0;
     text-align: center;
     font-size: 0.8vw;
     @media screen and (max-width: 650px) {
@@ -188,10 +187,10 @@ thead {
     margin-top: 10px;
 
     .admin__btn {
-      font-size: 0.5vw;
-      padding: 1px 5px;
+      font-size: 0.3vw;
+      padding: 20px 20px;
       background-color: rgb(8, 137, 8);
-      width: 50%;
+      width: 100vw;
       transition: 0.3s ease-in-out;
 
       &:hover {
@@ -303,18 +302,34 @@ thead {
     }
   }
 }
-
-.disabled__cell {
-  color: red;
-
   .cell__content {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 25px;
-    font-size: 1vw;
+    // margin-bottom: 25px;
+    font-size: 0.8vw;
     @media screen and (max-width: 650px) {
       font-size: $adaptiveFontSize-2;
     }
   }
-}
+
+  .disabled__cell  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // background-color: lightgray;
+    color: red;
+  }
+
+// tbody td {
+//   // background-color: black;
+//   border-radius: 50%;
+// }
+
+// tbody div {
+//   padding: 0;
+//   margin: 0;
+//   // background-color: black;
+// }
+

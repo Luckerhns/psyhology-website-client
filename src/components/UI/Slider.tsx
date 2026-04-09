@@ -9,7 +9,7 @@ const SliderComponent = ({ carousel }: { carousel: any[] }) => {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     arrows: false,
   };
@@ -19,7 +19,7 @@ const SliderComponent = ({ carousel }: { carousel: any[] }) => {
 
   return (
     <div className={styles.slider__image__container}>
-      <Slider {...settings}>
+      <Slider className={styles.slider__component} {...settings}>
         {carousel.map((e: { id: number; src: string }) => (
           <div
             className={styles.padding}
@@ -28,6 +28,7 @@ const SliderComponent = ({ carousel }: { carousel: any[] }) => {
               openImageModal(e.src, true);
               console.log(isActive, image)
             }}
+            style={{border: "none"}}
           >
             <img className={styles.slider__image} src={e.src} />
           </div>

@@ -5,7 +5,7 @@ import CustomCalendar from "../../components/CustomCalendar";
 const AdminPage = () => {
   return (
     <MainLayout title="Создание записей | Татьяная Ëремина">
-      <CustomCalendar forAdmin={true} />
+      <CustomCalendar />
     </MainLayout>
   );
 };

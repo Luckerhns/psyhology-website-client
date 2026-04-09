@@ -5,35 +5,33 @@ export const findCurrentDate = (
   selectedDate: string
 ) => {
   const selected = events?.find((elem) => elem.date === selectedDate);
-  return [selected?.freeTimes, selected?.busyTimes, selected?.notSelectedTimes];
+  return [
+    Array.isArray(selected?.freeTimes) ? selected.freeTimes : [],
+    Array.isArray(selected?.busyTimes) ? selected.busyTimes : [],
+    Array.isArray(selected?.notSelectedTimes) ? selected.notSelectedTimes : ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
+  ];
 };
-
 export function eraseFreeTime(
   current: string,
   selectedStateDate: string,
   setCurrentFunc: any,
   events: any,
-  setEvents: any
+  setEvents: React.Dispatch<React.SetStateAction<any[]>>
 ) {
-  events.map((e: any) => {
-    if (e.date === selectedStateDate) {
-      e.freeTimes.map((target: string, i: number) => {
-        if (target.includes(current)) {
-          //@ts-ignore
-          setEvents((prevData) => [
-            ...prevData,
-            //@ts-ignore
-            e.notSelectedTimes.push(target),
-          ]);
-          //@ts-ignore
-          setEvents((prevData) => [...prevData, e.freeTimes.splice(i, 1)]);
-        }
-      });
-    }
+  setEvents((prevEvents: any[]) => {
+    const newEvents = prevEvents.map((e: any) => {
+      if (e.date === selectedStateDate) {
+        const newFreeTimes = e.freeTimes.filter((target: string) => !target.includes(current));
+        const newNotSelectedTimes = [...e.notSelectedTimes, current].sort((a, b) => parseInt(a) - parseInt(b));
+        return { ...e, freeTimes: newFreeTimes, notSelectedTimes: newNotSelectedTimes };
+      }
+      return e;
+    });
+    return newEvents;
   });
-
   setCurrentFunc("notSelectedTimes");
 }
+
 
 export function sortReadyList(
   target: string,

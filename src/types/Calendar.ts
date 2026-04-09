@@ -33,6 +33,7 @@ export interface IAdminCell {
 export interface IFreeTimesCell {
   selectedRecordField: boolean;
   events: CalendarData;
+  eventDate: any
 }
 
 // export type CellType = IAdminCell | IFreeTimesCell

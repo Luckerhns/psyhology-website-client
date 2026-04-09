@@ -7,10 +7,10 @@ import { IBusyRecord } from "../types/Calendar";
 
 export const event = [
   {
-    date: "2023-01-10",
+    date: "2026-03-10",
     username: "dsadsa",
-    freeTimes: [],
-    busyTimes: [{ time: "19:00", date: "2023-01-10" }],
+    freeTimes: ["11:00"],
+    busyTimes: ["19:00"],
     notSelectedTimes: [
       "10:00",
       "11:00",

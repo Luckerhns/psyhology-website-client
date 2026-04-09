@@ -1,75 +1,157 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState, useCallback } from "react";
 import { activeButton, checkEmail } from "../../../utils/functions";
 import { Button, Dropdown, MenuProps } from "antd";
 import PhoneInput from "react-phone-input-2";
-import styles from "../../../styles/UI/CalendarModal.module.scss";
+import styles from "../../../styles/UI/UserModal.module.scss";
 import { useActions } from "../../../hooks/useActions";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import { Link } from "react-router-dom";
-import { PublicRoutesEnum } from "../../../utils/consts";
-import { $user } from "../../../http";
-import { userNewRecord } from "../../../http/recordApi";
+import { getCalendar } from "../../../http/recordApi";
+import { ICalendarData } from "../../../types/Calendar";
 
 const UserModal = () => {
-  const items: MenuProps["items"] = [];
+  const [items, setItems] = useState<MenuProps["items"]>([]);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [patronymic, setPatronymic] = useState("");
 
-  const { allTimes, selectedUserDate, selectedTime } = useTypedSelector(
+  const [accessForm, setAccessForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [calendar, setCalendar] = useState<ICalendarData[]>([]);
+
+  const { selectedUserDate, selectedTime } = useTypedSelector(
     (state) => state.recordModal,
   );
 
+  const { setSelectedTime, createRecord, saveNewCalendar } = useActions();
+
   const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setValidEmail(checkEmail(email));
-    console.log(validEmail, "VALID");
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setValidEmail(checkEmail(newEmail));
   };
 
   const checkPhoneFunction = (e: string) => {
     setPhone(e);
-    if (phone.length >= 11) {
+    console.log(e);
+    if (e.length >= 11) {
       setAccessForm(true);
     } else {
       setAccessForm(false);
     }
   };
 
+  const selectTime = useCallback(
+    (time: string) => {
+      setSelectedTime(time);
+    },
+    [setSelectedTime],
+  );
+
   useEffect(() => {
-    allTimes[0] &&
-      //@ts-ignore
-      allTimes[0].map((el, i) => {
-        items.push({
-          key: i,
-          label: (
-            <div
-              onClick={(e) => {
-                setSelectedTime(el as string);
-              }}
-            >
-              {el}
-            </div>
-          ),
+    const fetchAllTimes = async () => {
+      try {
+        const calendarData: ICalendarData[] = await getCalendar();
+        setCalendar(calendarData);
+        const selectedDateData = calendarData.find(
+          (day) => day.date === selectedUserDate,
+        );
+        if (selectedDateData && selectedDateData.freeTimes.length > 0) {
+          const timeItems: MenuProps["items"] = selectedDateData.freeTimes.map(
+            (time, i) => ({
+              key: `time-${i}-${time}`,
+              label: (
+                <div
+                  style={{ cursor: "pointer", padding: "8px 12px" }}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectTime(time);
+                  }}
+                >
+                  {time}
+                </div>
+              ),
+            }),
+          );
+          setItems(timeItems);
+        }
+      } catch (error) {
+        console.log(error, "Ошибка при подгрузке свободных времен!");
+      }
+    };
+
+    if (selectedUserDate) {
+      fetchAllTimes();
+    }
+  }, [selectedUserDate, selectTime]);
+
+  const handleSubmit = async () => {
+    const isFormValid = activeButton(
+      firstname,
+      lastname,
+      patronymic,
+      selectedTime,
+      phone,
+      validEmail,
+    );
+    if (isFormValid) {
+      try {
+        await createRecord(
+          selectedUserDate,
+          selectedTime,
+          firstname,
+          lastname,
+          patronymic,
+          phone,
+          email,
+        );
+
+        const updatedCalendar = calendar.map((day) => {
+          if (day.date === selectedUserDate) {
+            const newFreeTimes = day.freeTimes.filter(
+              (time) => time !== selectedTime,
+            );
+            const newBusyTimes = [...day.busyTimes, { time: selectedTime }];
+            return {
+              ...day,
+              freeTimes: newFreeTimes,
+              busyTimes: newBusyTimes,
+            };
+          }
+          return day;
         });
-      });
-  }, [items]);
 
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [patronymic, setPatronymic] = useState("");
-
-  const [accessForm, setAccessForm] = useState(Boolean);
-
-  const [email, setEmail] = useState("");
-  const [validEmail, setValidEmail] = useState(false);
-  const [phone, setPhone] = useState("");
-
-  const { setSelectedTime, createRecord } = useActions();
+        saveNewCalendar(updatedCalendar);
+      } catch (error) {
+        console.error("Error processing record:", error);
+      }
+    } else {
+      console.log("Form not valid");
+    }
+  };
 
   return (
     <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
       <div className={styles.record__modal__title}>
         <span>Выберите время</span>
         <span>|</span>
-        <span>
-          {!activeButton(
+        <span
+          className={
+            activeButton(
+              firstname,
+              lastname,
+              patronymic,
+              selectedTime,
+              phone,
+              validEmail,
+            )
+              ? `${styles.status} ${styles.valid}`
+              : `${styles.status} ${styles.invalid}`
+          }
+        >
+          {activeButton(
             firstname,
             lastname,
             patronymic,
@@ -77,28 +159,48 @@ const UserModal = () => {
             phone,
             validEmail,
           )
-            ? "Заполните поля"
-            : "Отлично"}
+            ? "Отлично"
+            : `Заполните поля.`}
         </span>
       </div>
+
       <div className={styles.record__modal__body}>
         <div className={styles.left__record__container}>
-          <Dropdown trigger={["click"]} menu={{ items: items }}>
-            <Button>{selectedTime}</Button>
+          <Dropdown trigger={["click"]} menu={{ items }} destroyPopupOnHide className={styles.dropdown}>
+            <Button>{selectedTime || "Выберите время"}</Button>
           </Dropdown>
           <input
             placeholder="email"
-            className={styles.email__input}
-            style={{ border: validEmail ? "" : "2px solid red" }}
-            type="text"
+            className={`${styles.email__input} ${!validEmail && email.length > 0 ? styles.invalid : ""}`}
+            type="email"
             value={email}
-            onChange={(e) => changeEmail(e)}
+            onChange={changeEmail}
           />
           <PhoneInput
+            inputClass={styles.phone__input}
+            containerClass={styles.phone__container}
+            searchClass={styles.phone__search}
             value={phone}
             country={"ru"}
-            onChange={(e: any) => checkPhoneFunction(e)}
-            inputStyle={{ width: "100%", marginLeft: 20 }}
+            onChange={checkPhoneFunction}
+            inputProps={{
+              style: {
+                width: "100%",
+                height: "60px",
+                borderColor: "transparent",
+                borderRadius: "20px",
+                background: `linear-gradient(
+                  145deg,
+                  rgba(255, 255, 255, 0.18),
+                 rgba(255, 255, 255, 0.08)
+               )`,
+                transition: `all 0.3s cubic-bezier(0.4, 0, 0.2, 1)`,
+                color: 'white', fontSize: '1.1rem',
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+                margin: '0',
+                paddingLeft: '20px'
+              },
+            }}
           />
         </div>
         <div className={styles.right__record__container}>
@@ -125,35 +227,8 @@ const UserModal = () => {
         </div>
       </div>
       <button
-        className={
-          !accessForm
-            ? styles.record__time__btn
-            : `${styles.record__time__btn} ${styles.disabled}`
-        }
-        onClick={
-          !activeButton(
-            firstname,
-            lastname,
-            patronymic,
-            selectedTime,
-            phone,
-            validEmail,
-          )
-            ? () => {
-                console.log(
-                  userNewRecord([
-                    selectedUserDate,
-                    selectedTime,
-                    firstname,
-                    lastname,
-                    patronymic,
-                    phone,
-                    email,
-                  ]),
-                );
-              }
-            : () => {}
-        }
+        className={`${styles.record__time__btn} ${activeButton(firstname, lastname, patronymic, selectedTime, phone, validEmail) ? "" : styles.disabled}`}
+        onClick={handleSubmit}
       >
         Записаться
       </button>

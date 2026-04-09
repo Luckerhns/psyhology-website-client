@@ -1,9 +1,15 @@
-@import '../variables';
+@import "../variables";
 
 .slider__image__container {
   // margin: 0 50px;
-  background-color: #E2E2E2;
+  background-color: #e2e2e2;
   border-radius: 10px;
+  border: none;
+  height: 100%;
+
+  & [data-index="-1"] {
+    border-right: 1px solid gray;
+  }
 
   @media screen and (max-width: 1000px) {
     margin: 0;
@@ -17,14 +23,18 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    border: none;
+    height: 100%;
+    outline: none;
   }
 
   img {
     width: 70%;
-    height: auto;
+    height: 100%;
     margin: auto;
-    border-radius: 2px;
     background-color: gray;
     text-decoration: none;
+    border: none;
+    border-radius: 10px;
   }
 }

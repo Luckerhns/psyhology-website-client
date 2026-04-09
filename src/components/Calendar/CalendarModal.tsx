@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/UI/CalendarModal.module.scss";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
@@ -13,12 +13,14 @@ import {
 import { event } from "../../utils/data";
 import UserModal from "../UI/Modal/UserModal";
 
-
 const CalendarModal = () => {
   const [currentEvent, setCurrentEvent] = useState<number>(0);
   const [currentFunc, setCurrentFunc] = useState<string>("");
   const [accessForm, setAccessForm] = useState(Boolean);
   const [events, setEvents] = useState(event);
+
+  const notSelectedRef = useRef<HTMLDivElement>(null);
+  const freeTimesRef = useRef<HTMLDivElement>(null);
 
   const isAdmin = localStorage.getItem("isAdmin");
 
@@ -38,34 +40,34 @@ const CalendarModal = () => {
   } = useTypedSelector((state) => state.recordModal);
 
   useEffect(() => {
-    //@ts-ignore
-    setTimeout(setEvents(allDates), 200);
+    setEvents(allDates);
   }, [allDates]);
 
   useEffect(() => {
-    sortReadyList(currentFunc, events, selectedStateDate);
-  }, [events]);
+    if (currentFunc) {
+      sortReadyList(currentFunc, events, selectedStateDate);
+    }
+  }, [currentFunc, selectedStateDate, events]);
 
   function addNewFreeTime(current: string) {
-    let selectedObjectIndex: number = 0;
-    events.map((e, i) => {
-      if (e.date == selectedStateDate) {
-        selectedObjectIndex = i;
-        e.notSelectedTimes.map((target, i) => {
-          //@ts-ignore
-          if (target.includes(current)) {
-            //@ts-ignore
-            setEvents((prevData) => [...prevData, e.freeTimes.push(target)]);
-            //@ts-ignore
-            setEvents((prevData) => [
-              ...prevData,
-              e.notSelectedTimes.splice(i, 1),
-            ]);
-          }
-        });
-      }
+    setEvents((prevEvents) => {
+      return prevEvents.map((e) => {
+        if (e.date === selectedStateDate) {
+          const newNotSelectedTimes = e.notSelectedTimes.filter(
+            (target: string) => !target.includes(current),
+          );
+          const newFreeTimes = [...e.freeTimes, current].sort(
+            (a: string, b: string) => parseInt(a.replace(/:/g, '')) - parseInt(b.replace(/:/g, '')),
+          );
+          return {
+            ...e,
+            notSelectedTimes: newNotSelectedTimes,
+            freeTimes: newFreeTimes,
+          };
+        }
+        return e;
+      });
     });
-
     setCurrentFunc("freeTimes");
   }
 
@@ -91,65 +93,80 @@ const CalendarModal = () => {
         >
           <div>Выберите свободное время</div>
           <div className={styles.admin__modal__content}>
-            <div className={styles.selected__times}>
-              <div className={styles.admin__free__time}>
-                <h5>Свободное время</h5>
-                {events.map((e) => {
-                  {
-                    return (
-                      e.date === selectedStateDate &&
-                      e.freeTimes.map((freeTime) => (
-                        <div
-                          onDoubleClick={async (e: any) => {
-                            eraseFreeTime(
-                              e.target.textContent,
-                              selectedStateDate,
-                              setCurrentFunc,
-                              events,
-                              setEvents
-                            );
-                          }}
-                        >
-                          {freeTime}
-                        </div>
-                      ))
-                    );
-                  }
-                })}
-              </div>
-              <div className={styles.admin__busy__time}>
-                <h5>Занятое время</h5>
-                {events.map((e) => {
-                  console.log(e)
-                  {
-                    return (
-                      e.date === selectedStateDate &&
-                      // @ts-ignore
-                      e.busyTimes.map((busyTime) => <div>{busyTime.time}</div>)
-                    );
-                  }
-                })}
-              </div>
-            </div>
-            <div className={styles.not__selected__times}>
+            <div ref={notSelectedRef} className={styles.not__selected__times}>
               <h5>Не выбранное время</h5>
-              {events.map((e) => {
-                if (e.date === selectedStateDate) {
-                  return e.notSelectedTimes.map((time) => (
+{(() => {
+                const matchingEvent = events.find(
+                  (e: any) => e.date === selectedStateDate,
+                );
+                if (!matchingEvent || !Array.isArray(matchingEvent.notSelectedTimes)) {
+                  return <div>Нет данных</div>;
+                }
+                return matchingEvent.notSelectedTimes
+                  .filter(Boolean)
+                  .map((time: string) => (
                     <div
-                      onDoubleClick={async (e: any) => {
-                        addNewFreeTime(e.target.textContent);
+                      key={time}
+                      onClick={() => {
+                        addNewFreeTime(time);
                       }}
                     >
                       {time}
                     </div>
                   ));
+              })()}
+            </div>
+            <div ref={freeTimesRef} className={styles.admin__free__time}>
+              <h5>Свободное время</h5>
+{(() => {
+                const matchingEvent = events.find(
+                  (e: any) => e.date === selectedStateDate,
+                );
+                if (!matchingEvent || !Array.isArray(matchingEvent.freeTimes)) {
+                  return <div>Нет данных</div>;
                 }
-              })}
+                return matchingEvent.freeTimes
+                  .filter(Boolean)
+                  .map((freeTime: string) => (
+                    <div
+                      onClick={() => {
+                        eraseFreeTime(
+                          freeTime,
+                          selectedStateDate,
+                          setCurrentFunc,
+                          events,
+                          setEvents,
+                        );
+                      }}
+                    >
+                      {freeTime}
+                    </div>
+                  ));
+              })()}
+            </div>
+            <div className={styles.admin__busy__time}>
+              <h5>Занятое время</h5>
+{(() => {
+                const matchingEvent = events.find(
+                  (e: any) => e.date === selectedStateDate,
+                );
+                if (!matchingEvent || !Array.isArray(matchingEvent.busyTimes)) {
+                  return <div>Нет данных</div>;
+                }
+                return matchingEvent.busyTimes
+                  .filter(Boolean)
+                  .map((busyTime: any, index: number) => (
+                    <div key={`busy-${index}`}>
+                      {typeof busyTime === "string"
+                        ? busyTime
+                        : (busyTime as any)?.time || JSON.stringify(busyTime)}
+                    </div>
+                  ));
+              })()}
             </div>
           </div>
           <div
-            onClick={() => saveNewCalendar(allDates)}
+            onClick={() => saveNewCalendar(events)}
             className={styles.record__time__btn}
           >
             Сохранить

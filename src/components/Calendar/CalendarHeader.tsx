@@ -11,7 +11,8 @@ const CalendarHeaderComponent = ({
   day,
   monthsList,
   currentYear,
-  forAdmin
+  forAdmin,
+  currentMonth
 }: any) => {
   const start = 0;
   const end = 12;
@@ -34,7 +35,7 @@ const CalendarHeaderComponent = ({
 
   const year = new Date().getFullYear();
   const month = value.month();
-
+  console.log(month)
   return (
     <div style={{ padding: 8 }} className={styles.calendar__header__container}>
       <div className={styles.date__container}>
